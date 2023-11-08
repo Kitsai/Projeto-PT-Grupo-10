@@ -1,0 +1,135 @@
+body{
+    --cor-primaria: #003F91;
+    --cor-primaria2: #003c6d;
+    --cor-secundaria: #6D326D;
+    --cor-fundo: #fffafa;
+    --cor-fundo-escuro: #1b2533;
+    --cor-branco: #FFFFFF;
+    --cor-erro: #cc3333;
+    --cor-sucesso: #4bb544;
+    --raio-borda: 6px;
+
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background: var(--cor-fundo);
+}
+
+header{
+    display: flex;
+    background-color: var(--cor-primaria);
+    height: 10%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    vertical-align: middle;
+    
+}
+
+.header_botao{
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 0.5rem;
+    margin: 1.5rem;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: black;
+    border-radius: var(--raio-borda);
+    outline: none;
+    cursor: pointer;
+    background-color: var(--cor-fundo);
+    transition: background 0.2s, border-color 0.3s;
+}
+
+.caixa,
+.caixa_input,
+.caixa_botao {
+    font: 100 0.8rem "Sans Serif Collection Regular", sans-serif
+}
+
+.caixa > *:first-child{
+    margin-top: 0;
+}
+
+.caixa > *:last-child{
+    margin-bottom: 0;
+}
+
+.caixa_titulo{
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.caixa_mensagem {
+    text-align: center;
+    margin-bottom: 1 rem;
+}
+.caixa_mensagem_erro{
+    color: var(--cor-erro)
+}
+
+.caixa_grupo_input{
+    margin-bottom: 1rem;
+}
+
+.caixa_input:focus {
+    border-color: var(--cor-primaria);
+    background: white;
+}
+
+.caixa_input--error{
+    color: var(--cor-erro);
+    border-color: var(--cor-erro);
+}
+
+.caixa_mensagem_erro_input{
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: var(--cor-erro);
+}
+
+
+.caixa_botao{
+    width: 100%;
+    line-height: 25px;
+    padding: 1rem 2rem;
+    vertical-align: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: white;
+    border-radius: var(--raio-borda);
+    outline: none;
+    cursor: pointer;
+    background-color: var(--cor-primaria);
+    transition: background 0.2s, border-color 0.3s;
+}
+
+.caixa_botao:hover{
+    background-color: var(--cor-primaria2);
+}
+
+.caixa_botao:active{
+    transform: scale(0.98);
+}
+
+.caixa_texto {
+    text-align: center;
+}
+
+.caixa_link {
+    color: var(--cor-secundaria);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.caixa_link:hover{
+    text-decoration: underline;
+}
+
