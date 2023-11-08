@@ -2,6 +2,7 @@ body{
     --cor-primaria: #003F91;
     --cor-primaria2: #003c6d;
     --cor-secundaria: #6D326D;
+    --cor-secundaria2: #5c2a5c;
     --cor-fundo: #fffafa;
     --cor-fundo-escuro: #1b2533;
     --cor-branco: #FFFFFF;
@@ -21,15 +22,23 @@ body{
 
 header{
     display: flex;
+    flex-direction: row;
+    align-items: center;
     background-color: var(--cor-primaria);
     height: 10%;
     position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
     width: 100%;
-    vertical-align: middle;
-    
+
 }
+
+header #logo {
+    position: absolute;
+    left: 50%;
+}
+
 
 .header_botao{
     position: fixed;
@@ -48,6 +57,63 @@ header{
     transition: background 0.2s, border-color 0.3s;
 }
 
+.header_profile {
+    text-decoration: none;
+    color: black;
+    position: absolute;
+    left: 80%;
+    align-items: center;
+    height: 2rem;
+    max-width: 17rem;
+    display: flex;
+    border-radius: var(--raio-borda);
+    gap: .5rem;
+    cursor: pointer;
+}
+
+.header_profile img {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 2rem;
+}
+
+.exit_button {
+    position: absolute;
+    right: 5%;
+    border: none;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 2rem;
+    background-color: rgba(0, 0, 0, 0);
+}
+.exit_button img {
+    width: 2rem;
+    height: 2rem;
+}
+
+#header_deslogado {
+    position: absolute;
+    left: 80%;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+#header_deslogado a{
+    color: black;
+}
+
+#header_deslogado a + a {
+    text-decoration: none;
+    background-color: var(--cor-secundaria);
+    padding: .75rem;
+    border-radius: var(--raio-borda);
+}
+
+
+#header_deslogado a + a:hover {
+    background-color: var(--cor-secundaria2);
+}
 .caixa,
 .caixa_input,
 .caixa_botao {
