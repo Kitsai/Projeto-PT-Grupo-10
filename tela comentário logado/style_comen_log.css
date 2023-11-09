@@ -1,0 +1,38 @@
+*{
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    gap: 1rem;
+    padding: 1rem;
+}
+
+
+
+nav img{
+
+}
+
+nav button{
+
+}
+.container{
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+.comentario_editavel{
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    padding: 1rem 2rem;
+    border: 1px solid black;
+}
