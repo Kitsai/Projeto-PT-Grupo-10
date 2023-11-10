@@ -56,7 +56,7 @@ header #logo {
     background-color: var(--cor-fundo);
     transition: background 0.2s, border-color 0.3s;
 }
-
+/*
 .header_profile {
     text-decoration: none;
     color: black;
@@ -90,6 +90,7 @@ header #logo {
     width: 2rem;
     height: 2rem;
 }
+*/
 
 #header_deslogado {
     position: absolute;
@@ -114,6 +115,29 @@ header #logo {
 #header_deslogado a + a:hover {
     background-color: var(--cor-secundaria2);
 }
+
+#header_logado {
+    position: absolute;
+    left: 80%;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+#header_logado a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    gap: .75rem;
+    align-items: center;
+}
+
+#header_logado a img{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+}
+
 .caixa,
 .caixa_input,
 .caixa_botao {

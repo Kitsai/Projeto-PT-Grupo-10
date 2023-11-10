@@ -1,19 +1,27 @@
 import { mockedPosts } from './Feed_posts.js'
+import { currentUser } from './Current_user.js'
 
-const renderPosts = () => {
+export const renderPosts = (logado) => {
     const postContainer = document.querySelector(".posts")
 
-    const linkDados = (document.querySelector("#header_deslogado") != null) ? "../home/página de login.html" : "perfil"
-    const linkPost = (document.querySelector("#header_deslogado") != null) ? "../home/página de login.html" : "comentarios"
+    const linkDados = (logado) ? "../home/página de login.html" : "perfil"
+    const linkPost = (logado) ? "../home/página de login.html" : "comentarios"
+    
     
     mockedPosts.forEach( post => {
         const postCard = document.createElement("div")
+        const botao = (logado && post.user.name == currentUser.name)? '<button class="botao_deletar"><img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar"></button>': ''
         postCard.classList.add("card")
 
-        postCard.innerHTML = '<a href="' + linkDados + '" class="dados"><img src="' + post.user.img + '" alt="Foto de perfil"><h2> ' + post.user.name + '</h2>' + post.date + '</a> <a href="' + linkPost + '" class="content"><p>' + post.content + '</p></a>'
+        postCard.innerHTML = '<div class="post_header"><a href="' 
+        + linkDados + '" class="dados"> <img src="'
+        + post.user.img + '" alt="profile picture"> <h2>'
+        + post.user.name + '</h2>'
+        + post.date + '</a>'
+        + botao + '</div><a href="'
+        + linkPost + '" class="content">'
+        + post.content + '</a>'
         
         postContainer.appendChild(postCard)
     })
 }
-
-renderPosts()
