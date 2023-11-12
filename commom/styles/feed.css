@@ -54,7 +54,7 @@
 }
 
 .card a {
-    color: black;
+    color: var(--cor-fundo);
     text-decoration: none;
 }
 
@@ -93,7 +93,9 @@
 
     background-color: rgba(0, 0, 0, 0);
     border: none;
+    cursor: pointer;
 }
+
 
 .card .post_header button img {
     width: 2rem;
