@@ -56,41 +56,6 @@ header #logo {
     background-color: var(--cor-fundo);
     transition: background 0.2s, border-color 0.3s;
 }
-/*
-.header_profile {
-    text-decoration: none;
-    color: black;
-    position: absolute;
-    left: 80%;
-    align-items: center;
-    height: 2rem;
-    max-width: 17rem;
-    display: flex;
-    border-radius: var(--raio-borda);
-    gap: .5rem;
-    cursor: pointer;
-}
-
-.header_profile img {
-    height: 2rem;
-    width: 2rem;
-    border-radius: 2rem;
-}
-
-.exit_button {
-    position: absolute;
-    right: 5%;
-    border: none;
-    width: fit-content;
-    height: fit-content;
-    border-radius: 2rem;
-    background-color: rgba(0, 0, 0, 0);
-}
-.exit_button img {
-    width: 2rem;
-    height: 2rem;
-}
-*/
 
 #header_deslogado {
     position: absolute;
@@ -136,6 +101,17 @@ header #logo {
     width: 2rem;
     height: 2rem;
     border-radius: 2rem;
+}
+
+#exit_button {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    cursor: pointer;
+}
+
+#exit_button img{
+    width: 2rem;
+    height: 2rem;
 }
 
 .caixa,

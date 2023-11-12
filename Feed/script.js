@@ -1,7 +1,10 @@
-import { mockedPosts } from './Feed_posts.js'
-import { currentUser } from './Current_user.js'
+import { mockedPosts } from '../src/Feed_posts.js'
+import { currentUser } from '../src/Current_user.js'
 
-export const renderPosts = (logado) => {
+export const renderPosts = () => {
+    console.log("renderPosts")
+    const logado = currentUser != null
+
     const postContainer = document.querySelector(".posts")
 
     const linkDados = (logado) ? "../home/página de login.html" : "perfil"
@@ -10,7 +13,7 @@ export const renderPosts = (logado) => {
     
     mockedPosts.forEach( post => {
         const postCard = document.createElement("div")
-        const botao = (logado && post.user.name == currentUser.name)? '<button class="botao_deletar"><img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar"></button>': ''
+        const botao = (logado && post.user.name == currentUser.name)? '<button class="delete_button"><img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar"></button>': ''
         postCard.classList.add("card")
 
         postCard.innerHTML = '<div class="post_header"><a href="' 
@@ -25,3 +28,5 @@ export const renderPosts = (logado) => {
         postContainer.appendChild(postCard)
     })
 }
+
+renderPosts()
