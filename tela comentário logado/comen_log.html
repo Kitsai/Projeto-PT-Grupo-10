@@ -4,69 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style_comen_log.css">
-    <link rel="stylesheet" href="../commom/styles/global.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <title>Comentários logado</title>
 
 </head>
 <body>
-    <header>
-        <img src="" alt="logo">
-        <nav>
-            <img src="" alt="perfil">
-            <button>Sair</button>
-        </nav>
+    <header class="header">
+        <img id="logo" src="../Projeto-PT-Grupo-10/assets/Logo.svg" alt="">
+        
+        <a href="" class="header_profile">
+            <img src="../Projeto-PT-Grupo-10/assets/Profile picture.svg" alt="">
+            <p style="color: white">Admin</p>
+        </a>
+        <a href="../tela comentário deslogado/comen_des.html" class="exit_button">
+            <img src="../Projeto-PT-Grupo-10/assets/log-out.svg" alt="">
+        </a>
+        
     </header>
+
     <main>
         <section class="container">
-            <header>
-                <nav>
-                    <p>Coméntarios</p>
+            <div class="coment">
+                <p style="color: #001830">Comentários</p>
+                <a href=""> <!--Abrir aba comentario-->
                     <img src="../Projeto-PT-Grupo-10/assets/Botao De Login (1).svg" alt="">
-
-                </nav>
-            </header>
-
-
-                <div class="comentario_editavel">
-
-                    
-                    <img src="../Projeto-PT-Grupo-10/assets/User.svg" alt=""></img>
-                    
-                    <h2>Joazin Gamer</h2>
-                    <h3>22/10/2023</h3>
-                    <div>
-                        <p>Um dilema ético-moral em informática é um problema de tomada de decisão contextualizado socialmente, em que um agente enfrenta dificuldades ético-morais ao escolher entre diferentes opções conflitantes. O dilema envolve um artefato, produto ou serviço informático específico, desenvolvido e promovido por entidades específicas, e é utilizado por usuários relevantes ao contexto social.</p>
-                        <img src="../Projeto-PT-Grupo-10/assets/trash-2.svg" id="imgtrash" alt="">
-                        <img src="../Projeto-PT-Grupo-10/assets/Vector.svg" alt="">
-                    </div>
+                </a>
+            </div>
+            <div class="coment_editavel">
+                <div class="edit"> 
+                    <a href="" id="tela-perfil"><!--Tela de perfil-->
+                        <img src="../Projeto-PT-Grupo-10/assets/User.svg" alt="">
+                    </a>
+                    <p style="color: #ECF3FB;">Joãzin Gamer</p>
+                    <p style="color: #ECF3FB;">22/10/2023</p>
+                    <img src="../Projeto-PT-Grupo-10/assets/trash-2.svg" id="trash" alt="">
                 </div>
-
-
-                <div class="comentario_finalizado">
-                    <div>
-                        <img src="../Projeto-PT-Grupo-10/assets/User.svg" alt=""><!--imagem perfil-->
-                        <h2>Joazin Gamer</h2>
-                        <h3>22/10/2023</h3>
-                    </div>
-                    <div>
-                        <ul>
-                            <p>Um dilema ético-moral em informática é um problema de tomada de decisão contextualizado socialmente, em que um agente enfrenta dificuldades ético-morais ao escolher entre diferentes opções conflitantes. O dilema envolve um artefato, produto ou serviço informático específico, desenvolvido e promovido por entidades específicas, e é utilizado por usuários relevantes ao contexto social.</p>
-                            <img src="../Projeto-PT-Grupo-10/assets/Frame 5.svg" alt="">
-                        </ul>
-                    </div>
+                <div class="texto-editar">
+                    <p style="color:aliceblue">Um dilema ético-moral em informática é um problema de tomada de decisão contextualizado socialmente, em que um agente enfrenta dificuldades ético-morais ao escolher entre diferentes opções conflitantes. O dilema envolve um artefato, produto ou serviço informático específico, desenvolvido e promovido por entidades específicas, e é utilizado por usuários relevantes ao contexto social.</p>
+                    <img src="../Projeto-PT-Grupo-10/assets/Vector.svg"  id="botao-sair">
                 </div>
+            </div>
 
-                <div class="comentario_finalizado">
-                    <img src="../Projeto-PT-Grupo-10/assets/Profile picture.svg" alt=""><!--imagem perfil-->
-                    <h2>Foca Plays</h2>
-                    <h3>22/10/2023</h3>
-                    <div>
-                        <p>Um dilema ético-moral em informática é um problema de tomada de decisão contextualizado socialmente, em que um agente enfrenta dificuldades ético-morais ao escolher entre diferentes opções conflitantes. O dilema envolve um artefato, produto ou serviço informático específico, desenvolvido e promovido por entidades específicas, e é utilizado por usuários relevantes ao contexto social.</p>
-                        <img src="../Projeto-PT-Grupo-10/assets/trash-2.svg" id="imgtrash"alt="">
-                        
-                    </div>
+            <div class="coment_final">
+                <div class="edit">
+                    <a href="" id="tela-perfil"><!--Tela de Perfil-->
+                        <img src="../Projeto-PT-Grupo-10/assets/User.svg" alt="">
+                    </a>
+                    <p style="color: #ECF3FB;">Joãzin Gamer</p>
+                    <p style="color: #ECF3FB;">22/10/2023</p>
+                    <img src="../Projeto-PT-Grupo-10/assets/trash-2.svg" id="trash" alt="">
                 </div>
+                <div class="texto-final">
+                    <p style="color:aliceblue">Um dilema ético-moral em informática é um problema de tomada de decisão contextualizado socialmente, em que um agente enfrenta dificuldades ético-morais ao escolher entre diferentes opções conflitantes. O dilema envolve um artefato, produto ou serviço informático específico, desenvolvido e promovido por entidades específicas, e é utilizado por usuários relevantes ao contexto social.</p>
+                    <img src="../Projeto-PT-Grupo-10/assets/Frame 5.svg" id="foca-foto"alt="">
+                </div>
+            </div>
+
+            <div class="coment_final">
+                <div class="edit">
+                    <a href="" id="tela-perfil"><!--Tela de Perfil-->
+                        <img src="../Projeto-PT-Grupo-10/assets/Profile picture.svg" alt="">
+                    </a>
+                    <p style="color: #ECF3FB;">Foca Plays</p>
+                    <p style="color: #ECF3FB;">22/10/2023</p>
+                    <img src="../Projeto-PT-Grupo-10/assets/trash-2.svg" id="trash" alt="">
+                </div>
+                <div class="texto-final">
+                    <p style="color:aliceblue">Um dilema ético-moral em informática é um problema de tomada de decisão contextualizado socialmente, em que um agente enfrenta dificuldades ético-morais ao escolher entre diferentes opções conflitantes. O dilema envolve um artefato, produto ou serviço informático específico, desenvolvido e promovido por entidades específicas, e é utilizado por usuários relevantes ao contexto social.</p>
+                    <img src="../Projeto-PT-Grupo-10/assets/Frame 5.svg" alt="">
+                </div>
+            </div>
         </section>
+
     </main>
 </body>
 </html>
