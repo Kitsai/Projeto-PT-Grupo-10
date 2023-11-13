@@ -1,14 +1,14 @@
 import { mockedPosts } from '../src/Feed_posts.js'
 import { currentUser } from '../src/Current_user.js'
+import { renderHeader } from '../src/Header.js'
 
 export const renderPosts = () => {
-    console.log("renderPosts")
     const logado = currentUser != null
 
     const postContainer = document.querySelector(".posts")
 
-    const linkDados = (logado) ? "../home/página de login.html" : "perfil"
-    const linkPost = (logado) ? "../home/página de login.html" : "comentarios"
+    const linkDados = (!logado) ? "../home/página de login.html" : "perfil"
+    const linkPost = (!logado) ? "../home/página de login.html" : "comentarios"
     
     
     mockedPosts.forEach( post => {
@@ -28,5 +28,5 @@ export const renderPosts = () => {
         postContainer.appendChild(postCard)
     })
 }
-
+renderHeader("feed")
 renderPosts()

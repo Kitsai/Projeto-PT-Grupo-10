@@ -1,7 +1,7 @@
 import { currentUser,updateUser } from "./Current_user.js";
+import { renderPosts } from "../Feed/script.js";
 
-export const renderHeader = () => {
-    console.log("renderHeader")
+export const renderHeader = (page) => {
     const header = document.body.querySelector("header")
     const logado = currentUser != null
 
@@ -23,7 +23,8 @@ export const renderHeader = () => {
         logout.type = 'button'
         logout.innerHTML = '<img src="../assets/exit-14.svg" alt="exit">'
 
-        logout.addEventListener("click", exit_button_clicked)
+        logout.addEventListener("click", exit_button_clicked,false)
+        logout.myParam = page
 
         header_content.appendChild(logout)
     } else {
@@ -34,12 +35,18 @@ export const renderHeader = () => {
     header.appendChild(header_content)
 }
 
-const exit_button_clicked = () => {
+const exit_button_clicked = (evt) => {
+    const page = evt.currentTarget.myParam
+    
     updateUser(null)
-    document.querySelectorAll(".delete_button").forEach( button => {
-        button.remove()
-    })
-    renderHeader()
-}
 
-renderHeader()
+    switch(page) {
+        case "feed":
+            document.querySelector(".posts").innerHTML = ""
+            renderPosts()
+            break
+        default:
+            break
+    }
+    renderHeader(page)
+}
