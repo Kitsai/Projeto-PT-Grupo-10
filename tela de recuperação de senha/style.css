@@ -1,0 +1,57 @@
+@import "../commom/styles/global.css";
+
+.caixa {
+    margin-top: 0.1rem;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 90%;
+    max-width: 550px; /* Defina um valor máximo para a largura da caixa */
+    margin: 0 auto; /* Isso centralizará a caixa horizontalmente */
+    padding: 2rem;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    border-radius: var(--raio-borda);
+    background: #ffffff;
+}
+
+img{
+    display: block;
+    margin-top: 0rem;
+    margin-bottom: 1.2rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+.caixa_input{
+    display: block;
+    width: 100%;
+    padding: 0.70rem;
+    box-sizing: border-box;
+    border-radius: var(--raio-borda);
+    border: 1px solid #FFFFFF;
+    outline: #FFFFFF;
+    background-color: #eeeeee;
+    transition: background 0.2s, border-color 0.3s;
+}
+
+.caixa_botao{
+    width: 100%;
+    line-height: 25px;
+    padding: 1rem 2rem;
+    vertical-align: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: white;
+    border-radius: var(--raio-borda);
+    outline: none;
+    cursor: pointer;
+    background-color: var(--cor-primaria);
+    transition: background 0.2s, border-color 0.3s;
+}
+
+.caixa_texto{
+    justify-content: center;
+    font-weight: normal;
+    line-height: 30px;
+}
