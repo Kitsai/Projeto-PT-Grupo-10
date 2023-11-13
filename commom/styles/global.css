@@ -1,13 +1,17 @@
 body{
-    --cor-primaria: #003F91;
-    --cor-primaria2: #003c6d;
-    --cor-secundaria: #6D326D;
+    --cor-primaria: #002850;
+    --cor-primaria2: #00366b;
+    --cor-secundaria: rgb(253, 209, 128);
+    --cor-secundaria2: rgb(219, 184, 117);
     --cor-fundo: #fffafa;
     --cor-fundo-escuro: #1b2533;
     --cor-branco: #FFFFFF;
     --cor-erro: #cc3333;
     --cor-sucesso: #4bb544;
+    --cor-link: rgb(35, 38, 197);
     --raio-borda: 6px;
+
+    font: 100 0.8rem "Sans Serif Collection Regular", sans-serif;
 
     margin: 0;
     padding: 0;
@@ -21,15 +25,25 @@ body{
 
 header{
     display: flex;
+    flex-direction: row;
+    align-items: center;
     background-color: var(--cor-primaria);
     height: 10%;
     position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
     width: 100%;
-    vertical-align: middle;
-    
+
 }
+
+header #logo {
+    scale: 12%;
+    display: inline-block;
+    margin: 0 auto;
+
+}
+
 
 .header_botao{
     position: fixed;
@@ -46,6 +60,64 @@ header{
     cursor: pointer;
     background-color: var(--cor-fundo);
     transition: background 0.2s, border-color 0.3s;
+}
+
+#header_deslogado {
+    position: absolute;
+    left: 80%;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+#header_deslogado a{
+    color: white;
+}
+
+#header_deslogado a + a {
+    text-decoration: none;
+    background-color: var(--cor-secundaria);
+    padding: 0.5rem;
+    border-radius: var(--raio-borda);
+    transition: background 0.2s;
+}
+
+
+#header_deslogado a + a:hover {
+    background-color: var(--cor-secundaria2);
+}
+
+#header_logado {
+    position: absolute;
+    left: 80%;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+#header_logado a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    gap: .75rem;
+    align-items: center;
+}
+
+#header_logado a img{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+}
+
+#exit_button {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    cursor: pointer;
+}
+
+#exit_button img{
+    width: 2rem;
+    height: 2rem;
 }
 
 .caixa,
@@ -124,7 +196,7 @@ header{
 }
 
 .caixa_link {
-    color: var(--cor-secundaria);
+    color: var(--cor-link);
     text-decoration: none;
     cursor: pointer;
 }
