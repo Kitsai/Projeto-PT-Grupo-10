@@ -1,5 +1,9 @@
 @import "../common/style/global.css";
 
+body{
+    background-color: var(--cor-secundaria);
+}
+
 .container {
     height: fit-content;
     width: 70%;
@@ -7,6 +11,7 @@
     margin: 0 auto;
     top: 10vh;
     left: 15%;
+    background-color: var(--cor-fundo);
 
     align-items: center;
     padding: 2rem;
@@ -32,7 +37,7 @@
 }
 
 .container #container_header button:hover {
-    background-color: var(--cor-primaria2);
+    background-color: var(--cor-primaria21);
 }
 
 .container .posts {
@@ -54,7 +59,7 @@
 }
 
 .card a {
-    color: var(--cor-fundo);
+    color: white;
     text-decoration: none;
 }
 
