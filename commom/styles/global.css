@@ -1,14 +1,17 @@
 body{
-    --cor-primaria: #003F91;
-    --cor-primaria2: #003c6d;
-    --cor-secundaria: #6D326D;
-    --cor-secundaria2: #5c2a5c;
+    --cor-primaria: #002850;
+    --cor-primaria2: #00366b;
+    --cor-secundaria: rgb(253, 209, 128);
+    --cor-secundaria2: rgb(219, 184, 117);
     --cor-fundo: #fffafa;
     --cor-fundo-escuro: #1b2533;
     --cor-branco: #FFFFFF;
     --cor-erro: #cc3333;
     --cor-sucesso: #4bb544;
+    --cor-link: rgb(35, 38, 197);
     --raio-borda: 6px;
+
+    font: 100 0.8rem "Sans Serif Collection Regular", sans-serif;
 
     margin: 0;
     padding: 0;
@@ -35,8 +38,10 @@ header{
 }
 
 header #logo {
-    position: absolute;
-    left: 50%;
+    scale: 12%;
+    display: inline-block;
+    margin: 0 auto;
+
 }
 
 
@@ -66,14 +71,15 @@ header #logo {
 }
 
 #header_deslogado a{
-    color: black;
+    color: white;
 }
 
 #header_deslogado a + a {
     text-decoration: none;
     background-color: var(--cor-secundaria);
-    padding: .75rem;
+    padding: 0.5rem;
     border-radius: var(--raio-borda);
+    transition: background 0.2s;
 }
 
 
@@ -190,7 +196,7 @@ header #logo {
 }
 
 .caixa_link {
-    color: var(--cor-secundaria);
+    color: var(--cor-link);
     text-decoration: none;
     cursor: pointer;
 }
