@@ -1,5 +1,5 @@
 import { currentUser,updateUser } from "./Current_user.js";
-import { renderPosts } from "../Feed/script.js";
+import { renderPosts } from "./RenderPosts.js";
 
 export const renderHeader = (page) => {
     const header = document.body.querySelector("header")
