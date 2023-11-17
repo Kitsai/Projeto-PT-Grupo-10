@@ -18,7 +18,7 @@ class AuthService {
 
         const token = jwt.sign({ id: user.id }, "UltraSecretoUau")
 
-        return token;
+        return {token};
     }
 
     async signUp (username, password, profile_picture, gender, email, jobTitle) {
@@ -26,7 +26,7 @@ class AuthService {
 
         password = await bcrypt.hash(password, salt);
 
-        const newUser = await userService.create(username,password,profile_picture,gender,email,jobTitle);
+        return await userService.create(username,password,profile_picture,gender,email,jobTitle);
     }
 }
 
