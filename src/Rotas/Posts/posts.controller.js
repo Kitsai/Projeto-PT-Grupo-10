@@ -11,21 +11,30 @@ const postsService = new PostsService();
 
 postsRouter.get('/posts', jwtGuardNonBlocking, async (req, res) => {
     const logado = req.logado;
+    console.log(logado);
 
     let listaPosts = await postsService.getAll();
 
     if (logado) {
-        listaPosts.map(post => {
-            {
-                authorized: req.user.id === post.authorId,
-                post
+        listaPosts = listaPosts.map(({id, authorId, content, createdAt, updatedAt}) => {
+            return {
+                authorized: req.user.id === authorId,
+                id,
+                authorId,
+                content,
+                createdAt,
+                updatedAt
             }
         })
     } else {
-        listaPosts.map(post => {
-            {
+        listaPosts = listaPosts.map(({id, authorId, content, createdAt, updatedAt}) => {
+            return {
                 authorized: false,
-                post
+                id,
+                authorId,
+                content,
+                createdAt,
+                updatedAt
             }
         })
     }
@@ -33,4 +42,6 @@ postsRouter.get('/posts', jwtGuardNonBlocking, async (req, res) => {
     res.status(200).json(listaPosts);
 })
 
-postsRouter.get('/posts/:id', jwtGuardNonBlocking,async (req,res) => {undefined})
+postsRouter.get('/posts/:id', jwtGuardNonBlocking,async (req,res) => undefined)
+
+export default postsRouter;

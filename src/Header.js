@@ -1,7 +1,7 @@
 import { currentUser,updateUser } from "./Current_user.js";
 import { renderFeed } from "../Feed/Render_Feed.js";
 
-export const renderHeader = (page) => {
+export default function renderHeader (page) {
     const header = document.body.querySelector("header")
     const logado = currentUser != null
 

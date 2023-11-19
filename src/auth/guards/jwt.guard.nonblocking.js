@@ -6,6 +6,7 @@ export default function jwtGuarNonBlocking(req,res,next) {
     if(!authorization) {
         req.logado = false;
         next();
+        return;
     }
 
     const [bearer, token] = authorization.split(' ');

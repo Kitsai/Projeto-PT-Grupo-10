@@ -4,11 +4,11 @@ const prisma = new PrismaClient();
 
 class PostsService {
     async getAll() {
-        return await prisma.posts.findMany();
+        return await prisma.post.findMany();
     }
 
     async getAllByUser(authorId) {
-        return await prisma.posts.findMany({
+        return await prisma.post.findMany({
             where: {
                 authorId
             }
@@ -16,7 +16,7 @@ class PostsService {
     }
 
     async getOne(id) {
-        return await prisma.posts.findUnique({
+        return await prisma.post.findUnique({
             where: {
                 id
             }
@@ -24,7 +24,7 @@ class PostsService {
     }
 
     async create(authorId, content) {
-        return await prisma.posts.create({
+        return await prisma.post.create({
             data: {
                 authorId,
                 content
@@ -33,7 +33,7 @@ class PostsService {
     }
 
     async delete(id) {
-        return await prisma.posts.delete({
+        return await prisma.post.delete({
             where: {
                 id
             }

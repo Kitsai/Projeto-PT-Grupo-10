@@ -1,18 +1,24 @@
 import { mockedPosts } from "../src/Feed_posts.js"
 import { currentUser } from "../src/Current_user.js"
 
-const renderPosts = (logado) => {
+async function renderPosts(token) {
     const postContainer = document.querySelector(".posts")
 
     postContainer.innerText = ""
 
-    const linkDados = (!logado) ? "../home/página de login.html" : "perfil"
-    const linkPost = (!logado) ? "../home/página de login.html" : "comentarios"
+
+    const res = await fetch('http://localhost:3000/posts', {
+        mode: 'no-cors',
+        headers: (token)? {Authorization: 'Bearer ' + token} : {}
+    })
+
+    const posts = await res.json()
     
-    
-    mockedPosts.forEach( post => {
+    posts.forEach( post => {
         const postCard = document.createElement("div")
-        const botao = (logado && post.user.name == currentUser.name)? '<button class="delete_button"><img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar"></button>': ''
+        const botao = (post.authorized)? '<button class="delete_button"><img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar"></button>': ''
+        const linkDados = (!token) ? "../home/página de login.html" : "perfil"
+        const linkPost = (!token) ? "../home/página de login.html" : "comentarios"
         postCard.classList.add("card")
 
         postCard.innerHTML = '<div class="post_header"><a href="' 
@@ -32,16 +38,16 @@ const newPostButtonClicked = () => {
 
 }
 
-export const renderFeed = () => {
-    const logado = currentUser != null
+export default async function renderFeed(){
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzAwMzY4NDM1fQ.XnqelWlngHaowNIqfbEkf4TyNEmWIKMn4TrbRodSVYY'
 
-    renderPosts(logado)
+    await renderPosts(token)
 
     if(document.getElementById("new_post_button") != null) {
         document.getElementById("new_post_button").remove()
     }
 
-    if(logado) {
+    if(token) {
         const newPostButton = document.createElement("button")
         newPostButton.id = "new_post_button"
         newPostButton.type = "button"
