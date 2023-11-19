@@ -7,6 +7,14 @@ class PostsService {
         return await prisma.posts.findMany();
     }
 
+    async getAllByUser(authorId) {
+        return await prisma.posts.findMany({
+            where: {
+                authorId
+            }
+        });
+    }
+
     async getOne(id) {
         return await prisma.posts.findUnique({
             where: {
@@ -20,6 +28,14 @@ class PostsService {
             data: {
                 authorId,
                 content
+            }
+        });
+    }
+
+    async delete(id) {
+        return await prisma.posts.delete({
+            where: {
+                id
             }
         });
     }
