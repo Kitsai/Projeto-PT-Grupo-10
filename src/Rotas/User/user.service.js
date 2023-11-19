@@ -3,15 +3,15 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 class UserService {
-    async create(username, password, profile_picture, gender, email, jobTitle) {
+    async create(username, email, password, nome, gender, cargo) {
         return await prisma.user.create({
             data: {
                 username,
-                password,
-                profile_picture,
-                gender,
                 email,
-                jobTitle //?
+                password,
+                nome,
+                gender,
+                cargo,
             }
         }).catch(e => {
             if(e.code === 'P2002') {

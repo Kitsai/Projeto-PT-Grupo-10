@@ -21,12 +21,12 @@ class AuthService {
         return {token};
     }
 
-    async signUp (username, password, profile_picture, gender, email, jobTitle) {
+    async signUp (username, email, nome, password, gender, cargo) {
         const salt = await bcrypt.genSalt();
-
+        const hashedPassword = await bcrypt.hash(password, salt);
         password = await bcrypt.hash(password, salt);
 
-        return await userService.create(username,password,profile_picture,gender,email,jobTitle);
+        return await userService.create(username, email, hashedPassword,nome, gender, cargo);
     }
 }
 
