@@ -18,7 +18,7 @@ model User {
   gender String
   email     String    @unique
 
-  jobTitle String     @unique
+  jobTitle String     
   jobTitleR  JobTitle @relation(fields: [jobTitle], references: [name])
 
   admin Boolean       @default(false)
