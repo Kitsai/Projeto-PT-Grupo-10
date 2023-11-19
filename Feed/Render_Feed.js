@@ -2,8 +2,19 @@ import { mockedPosts } from "../src/Feed_posts.js"
 import { currentUser } from "../src/Current_user.js"
 
 
-function deletePostClicked(event) {
+async function deletePostClicked(event) {
+    const postId = event.currentTarget.post;
+    const token = event.currentTarget.token;
 
+    console.log(postId, token, 'http://localhost:3000/post/' + postId);
+
+    const res = await fetch('http://localhost:3000/post/' + postId, {
+        method: 'DELETE',
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    });
+    if(res.ok) document.getElementById("post-" + postId).remove();
 }
 
 async function renderPosts(token) {
@@ -32,10 +43,10 @@ async function renderPosts(token) {
 
         const [year, month, day] = createdAt.split("T")[0].split("-");
 
-        const date = `${day}/${month}/${year}`
+        const date = `${day}/${month}/${year}`;
     
-        postCard.classList.add("card")
-        postCard.id = id
+        postCard.classList.add("card");
+        postCard.id = "post-" + id;
 
         postCard.innerHTML = '<div class="post_header"><a href="' 
         + linkDados + '" class="dados"> <img src="data:image/png;base64,'
@@ -46,19 +57,23 @@ async function renderPosts(token) {
         + content + '</a>'
 
         if(authorized) {
-            const button = document.createElement("button")
-            button.classList.add("delete_button")
-            button.type = "button"
-            button.innerHTML = '<img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar">'
+            const deleteButton = document.createElement("button")
+            deleteButton.classList.add("delete_button")
+            deleteButton.type = "button"
+            deleteButton.innerHTML = '<img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar">'
 
-            button.addEventListener("click", deletePostClicked, false)
+            deleteButton.addEventListener("click", deletePostClicked, false)
+            deleteButton.post = id;
+            deleteButton.token = token;
+
+            postCard.querySelector(".post_header").appendChild(deleteButton)
         }
         
         postContainer.appendChild(postCard)
     })
 }
 
-const newPostButtonClicked = () => {
+const newPostButtonClicked = (event) => {
 
 }
 

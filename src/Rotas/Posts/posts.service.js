@@ -29,7 +29,7 @@ class PostsService {
                 authorId,
                 content
             }
-        });
+        })
     }
 
     async delete(id) {
@@ -37,7 +37,12 @@ class PostsService {
             where: {
                 id
             }
-        });
+        }).catch(e => {
+            if(e.code === 'P2025') {
+                throw new Error('Post não existe')
+            }
+            throw e
+        })
     }
 }
 
