@@ -4,7 +4,7 @@ function criarCadastro() {
     console.log("botão clicado")
     const usuario = document.getElementById('usuario').value;
     const email = document.getElementById('email').value;
-    const senha = document.getElementById('senha').value;
+    const password = document.getElementById('senha').value;
     const nome = document.getElementById('nome').value;
     const genero = document.getElementById('genero').value;
     const cargo = document.getElementById('cargo').value;
@@ -12,7 +12,7 @@ function criarCadastro() {
     const novoUsuario = {
         usuario,
         email,
-        senha,
+        password,
         nome,
         genero,
         cargo,
@@ -30,7 +30,7 @@ function criarCadastro() {
     .then(response => response.json())
     .then(data => {
         console.log('Cadastro bem-sucedido', data);
-        window.location.href = '../home/página de login.html';
+
 
     })
     .catch(error => {
