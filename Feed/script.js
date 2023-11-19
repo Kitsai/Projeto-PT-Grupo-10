@@ -1,5 +1,7 @@
-import { renderHeader } from '../src/Header.js'
-import { renderFeed } from './Render_Feed.js'
+// import renderHeader from '../src/Header.js'
+import renderFeed from './Render_Feed.js'
 
-renderHeader("feed")
-renderFeed()
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzAwMzY4NDM1fQ.XnqelWlngHaowNIqfbEkf4TyNEmWIKMn4TrbRodSVYY'
+
+// renderHeader("feed")
+renderFeed(token)

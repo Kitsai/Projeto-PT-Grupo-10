@@ -28,6 +28,14 @@ class UserService {
             }
         })
     }
+
+    async findbyId(id) {
+        return await prisma.user.findUnique({
+            where: {
+                id
+            }
+        })
+    }
 }
 
 export default UserService
