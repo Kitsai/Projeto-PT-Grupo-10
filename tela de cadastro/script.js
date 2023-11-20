@@ -1,27 +1,30 @@
 document.getElementById('botao_cadastro').addEventListener('click', criarCadastro);
 
-function criarCadastro() {
+async function criarCadastro() {
     console.log("botão clicado")
-    const usuario = document.getElementById('usuario').value;
+    const username = document.getElementById('usuario').value;
     const email = document.getElementById('email').value;
-    const password = document.getElementById('senha').value;
+    const password = document.getElementById('password').value;
     const nome = document.getElementById('nome').value;
-    const genero = document.getElementById('genero').value;
-    const cargo = document.getElementById('cargo').value;
+    const gender = document.getElementById('genero').value;
+    const jobTitle = document.getElementById('cargo').value;
+    const profile_picture = ''
+    const mensagemErro = document.getElementById("mensagem_erro");
 
     const novoUsuario = {
-        usuario,
+        username,
         email,
         password,
         nome,
-        genero,
-        cargo,
+        gender,
+        jobTitle,
+        profile_picture,
     
     };
 
-    //enviar os dados
+
     fetch('http://localhost:3000/signup', {
-        method: 'post',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -30,6 +33,7 @@ function criarCadastro() {
     .then(response => response.json())
     .then(data => {
         console.log('Cadastro bem-sucedido', data);
+        window.location.href = "../home/página de login.html"
 
 
     })

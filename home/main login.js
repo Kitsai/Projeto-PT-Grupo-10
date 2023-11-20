@@ -1,30 +1,34 @@
+
 async function validarLogin() {
     var email = document.getElementById("email").value;
-    var senha = document.getElementById("password").value;
+    var password = document.getElementById("senha").value;
     var mensagemErro = document.getElementById("mensagem_erro");
 
-    try {
-        // Enviar solicitação ao servidor para verificar as credenciais
+    try{
         const response = await fetch('http://localhost:3000/signin', {
-            method: 'post',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 email,
-                password: senha,
+                password,
             }),
-        });
+        })
 
-        if (response.ok) {
-            const data = await response.json();
-            console.log('Login bem-sucedido', data);
+
+        if(response.ok) {
+            const {token} = await response.json();
+            console.log('login bem sucedido', token)
+          //  salvatoken(token); // funcao ainda a ser finalizada
             window.location.href = '../Feed/index.html';
         } else {
             mensagemErro.style.display = 'block';
-            console.error('Credenciais incorretas');
+            console.error('credenciais incorretas');
         }
-    } catch (error) {
+
+    }
+    catch (error) {
         console.error('Erro durante o login', error);
     }
 }
