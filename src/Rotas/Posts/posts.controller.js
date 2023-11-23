@@ -56,7 +56,6 @@ postsRouter.get('/posts', jwtGuardNonBlocking, async (req, res) => {
 
 postsRouter.get('/posts/:authorId', jwtGuardNonBlocking ,async (req,res) => undefined);
 
-
 postsRouter.post('/post', jwtGuard, async (req,res) => undefined);
 
 postsRouter.put('/post/:id', jwtGuard, async (req,res) => undefined);
