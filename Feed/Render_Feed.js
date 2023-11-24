@@ -1,7 +1,3 @@
-import { mockedPosts } from "../src/Feed_posts.js"
-import { currentUser } from "../src/Current_user.js"
-
-
 async function deletePostClicked(event) {
     const postId = event.currentTarget.post;
     const token = event.currentTarget.token;
@@ -72,9 +68,13 @@ async function renderPosts(token) {
         postContainer.appendChild(postCard)
     })
 }
+const simplemde = new SimpleMDE({ element: document.getElementById("modalPost-text") });
 
 const newPostButtonClicked = (event) => {
+    const newPostModal = document.getElementById("modalPost");
 
+    newPostModal.style.display = "block";
+    document.getElementById("modalPost-button").innerText = "Post";
 }
 
 
@@ -96,5 +96,6 @@ export default async function renderFeed(token){
         newPostButton.addEventListener("click", newPostButtonClicked, false)
         
         document.getElementById("container_header").appendChild(newPostButton)
+
     }
 }
