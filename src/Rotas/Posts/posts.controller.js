@@ -22,7 +22,7 @@ postsRouter.get('/posts', jwtGuardNonBlocking, async (req, res) => {
             const author = await userService.findbyId(authorId);
 
             return {
-                authorized: (req.user.id === authorId) || (req.user.admin === false),
+                authorized: (req.user.id === authorId) || (req.user.admin === true),
                 profilePicture: author.profile_picture,
                 username: author.username,
                 id,
@@ -54,9 +54,42 @@ postsRouter.get('/posts', jwtGuardNonBlocking, async (req, res) => {
     res.status(200).json(newListaPosts);
 });
 
-postsRouter.get('/posts/:authorId', jwtGuardNonBlocking ,async (req,res) => undefined);
+postsRouter.get('/posts/:id', jwtGuardNonBlocking, async (req, res) => {
+    const user = req.user;
+    const postId = +req.params.id;
 
-postsRouter.post('/post', jwtGuard, async (req,res) => undefined);
+    const post = await postsService.getOne(postId);
+    const author = await userService.findbyId(post.authorId);
+
+
+    const newPost = {
+        authorized: (logado)? (user.id === post.authorId) || (user.admin === true) : false,
+        profilePicture: author.profile_picture,
+        name: author.username,
+        id: post.id,
+        authorId: post.authorId,
+        content: post.content,
+        createdAt: post.createdAt,
+        updatedAt: post.updatedAt,
+    };
+    if(post) res.status(200).json(newPost);
+    else res.status(404).json({message: 'Post não encontrado'});
+});
+
+// /user/:id/posts
+
+postsRouter.post('/post', jwtGuard, async (req,res) => {
+
+    const user = req.user;
+    const content = req.body.content;
+
+    try {
+        const postCriado = await postsService.create(user.id, content);
+        res.status(201).json(postCriado);
+    } catch (e) {
+        res.status(400).json({message: e.message});
+    }
+});
 
 postsRouter.put('/post/:id', jwtGuard, async (req,res) => undefined);
 

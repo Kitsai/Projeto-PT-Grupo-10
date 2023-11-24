@@ -68,7 +68,7 @@ async function renderPosts(token) {
         postContainer.appendChild(postCard)
     })
 }
-const simplemde = new SimpleMDE({ element: document.getElementById("modalPost-text") });
+export const simplemde = new SimpleMDE({ element: document.getElementById("modalPost-text") });
 
 const newPostButtonClicked = (event) => {
     const newPostModal = document.getElementById("modalPost");

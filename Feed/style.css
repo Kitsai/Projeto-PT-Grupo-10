@@ -124,7 +124,9 @@ body{
 
 .modal-content {
     background-color: var(--cor-fundo);
-    margin: auto;
+    position: fixed;
+    top: 15%;
+    margin-left: 25%;
     padding: 20px;
     width: 50%;
     border-radius: var(--raio-borda);
