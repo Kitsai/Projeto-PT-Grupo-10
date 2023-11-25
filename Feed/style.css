@@ -94,7 +94,13 @@ body{
     height: 2rem;
 }
 
-.card .post_header button {
+.card .post_header .buttons_container {
+    display: none;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card .post_header .buttons_container .postModal-button {
     width: fit-content;
     height: fit-content;
 
@@ -104,10 +110,9 @@ body{
 }
 
 
-.card .post_header button img {
+.postModal-button img {
     width: 2rem;
     height: 2rem;
-
 }
 
 .card .content p {
