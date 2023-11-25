@@ -11,6 +11,7 @@ authRouter.post('/signin', async (req, res) => {
         const token = await authService.signIn(email, password);
         res.status(200).json(token);
     } catch (e) {
+        console.error('Erro durante o login:', e.message);
         res.status(401).json({ error: e.message });
     }
 })
