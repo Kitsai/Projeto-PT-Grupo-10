@@ -83,9 +83,6 @@ postsRouter.post('/posts', jwtGuard, async (req,res) => {
     const user = req.user;
     const content = req.body.content;
 
-    console.log(user);
-    console.log(content);
-
     try {
         const postCriado = await postsService.create(user.id, content);
         res.status(201).json(postCriado);
@@ -94,7 +91,21 @@ postsRouter.post('/posts', jwtGuard, async (req,res) => {
     }
 });
 
-postsRouter.put('/posts/:id', jwtGuard, async (req,res) => undefined);
+postsRouter.put('/posts/:id', jwtGuard, async (req,res) => {
+    const user = req.user;
+    const content = req.body.content;
+    const postId = +req.params.id;
+    const post = await postsService.getOne(postId);
+
+    if(user.id !== post.authorId) return res.status(401).json({message: 'Usuário não autorizado'});
+
+    try {
+        const postAtualizado = await postsService.update(postId, content);
+        res.status(200).json(postAtualizado);
+    } catch (e) {
+        res.status(400).json({message: e.message});
+    }
+});
 
 postsRouter.delete('/posts/:id', jwtGuard, async (req,res) => {
 
@@ -103,9 +114,8 @@ postsRouter.delete('/posts/:id', jwtGuard, async (req,res) => {
 
     const post = await postsService.getOne(postId);
 
-    if((user.id !== post.authorId) && (user.admin === false)) {
-        return res.status(401).json({message: 'Usuário não autorizado'});
-    }
+    if((user.id !== post.authorId) && (user.admin === false)) return res.status(401).json({message: 'Usuário não autorizado'});
+
 
     try {
         const postDeletado = await postsService.delete(postId);
