@@ -78,10 +78,13 @@ postsRouter.get('/posts/:id', jwtGuardNonBlocking, async (req, res) => {
 
 // /user/:id/posts
 
-postsRouter.post('/post', jwtGuard, async (req,res) => {
+postsRouter.post('/posts', jwtGuard, async (req,res) => {
 
     const user = req.user;
     const content = req.body.content;
+
+    console.log(user);
+    console.log(content);
 
     try {
         const postCriado = await postsService.create(user.id, content);
@@ -91,9 +94,9 @@ postsRouter.post('/post', jwtGuard, async (req,res) => {
     }
 });
 
-postsRouter.put('/post/:id', jwtGuard, async (req,res) => undefined);
+postsRouter.put('/posts/:id', jwtGuard, async (req,res) => undefined);
 
-postsRouter.delete('/post/:id', jwtGuard, async (req,res) => {
+postsRouter.delete('/posts/:id', jwtGuard, async (req,res) => {
 
     const user = req.user;
     const postId = +req.params.id;
