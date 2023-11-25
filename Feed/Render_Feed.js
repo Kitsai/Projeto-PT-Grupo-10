@@ -1,3 +1,5 @@
+const md = window.markdownit();
+
 async function deletePostClicked(event) {
     const postId = event.currentTarget.post;
     const token = event.currentTarget.token;
@@ -50,7 +52,7 @@ async function renderPosts(token) {
         + username + '</h2>'
         + date + '</a></div><a href="'
         + linkPost + '" class="content">'
-        + content + '</a>'
+        + md.render(content) + '</a>'
 
         if(authorized) {
             const deleteButton = document.createElement("button")
