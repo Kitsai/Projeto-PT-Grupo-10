@@ -20,7 +20,7 @@ async function validarLogin() {
         if(response.ok) {
             const {token} = await response.json();
             console.log('login bem sucedido', token)
-          //  salvatoken(token); // funcao ainda a ser finalizada
+          //  salvatoken(token); // funcao ainda a ser implementada
             window.location.href = '../Feed/index.html';
         } else {
             mensagemErro.style.display = 'block';

@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import UserService from '../Rotas/User/user.service.js';
 
+
 const userService = new UserService();
 
 class AuthService {
