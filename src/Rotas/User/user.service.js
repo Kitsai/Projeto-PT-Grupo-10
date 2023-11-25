@@ -11,7 +11,7 @@ class UserService {
                 profile_picture,
                 gender,
                 email,
-                jobTitle //?
+                jobTitle, //?
             }
         }).catch(e => {
             if(e.code === 'P2002') {
