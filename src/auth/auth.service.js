@@ -16,7 +16,7 @@ class AuthService {
             throw new Error('Senha incorreta');
         }
 
-        const token = jwt.sign({ id: user.id }, "UltraSecretoUau")
+        const token = jwt.sign(user, "UltraSecretoUau")
 
         return {token};
     }

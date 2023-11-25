@@ -1,6 +1,4 @@
-import { mockedPosts } from "../src/Feed_posts.js"
-import { currentUser } from "../src/Current_user.js"
-
+const md = window.markdownit();
 
 async function deletePostClicked(event) {
     const postId = event.currentTarget.post;
@@ -8,7 +6,7 @@ async function deletePostClicked(event) {
 
     console.log(postId, token, 'http://localhost:3000/post/' + postId);
 
-    const res = await fetch('http://localhost:3000/post/' + postId, {
+    const res = await fetch('http://localhost:3000/posts/' + postId, {
         method: 'DELETE',
         headers: {
             Authorization: 'Bearer ' + token
@@ -54,7 +52,7 @@ async function renderPosts(token) {
         + username + '</h2>'
         + date + '</a></div><a href="'
         + linkPost + '" class="content">'
-        + content + '</a>'
+        + md.render(content) + '</a>'
 
         if(authorized) {
             const deleteButton = document.createElement("button")
@@ -72,9 +70,39 @@ async function renderPosts(token) {
         postContainer.appendChild(postCard)
     })
 }
+export const simplemde = new SimpleMDE({ element: document.getElementById("modalPost-text"), spellChecker: false , hideIcons: ["image"]});
 
 const newPostButtonClicked = (event) => {
+    const newPostModal = document.getElementById("modalPost");
+    const postModalButton = document.getElementById("modalPost-button");
 
+    newPostModal.style.display = "block";
+    postModalButton.innerText = "Post";
+    postModalButton.onclick = postModalButtonClicked;
+    postModalButton.token = event.currentTarget.token;
+    postModalButton.mode = 1; // 1 = new post, 0 = edit post
+    simplemde.value("");
+}
+
+const postModalButtonClicked = async (event) => {
+    const content = simplemde.value();
+    const token = event.currentTarget.token;
+    const mode = event.currentTarget.mode;
+
+    console.log(JSON.stringify({content}));
+
+    const modal = document.getElementById("modalPost");
+
+    if(mode) {
+        const res = await fetch('http://localhost:3000/posts', {
+            method: 'POST',
+            headers: { "Authorization": 'Bearer ' + token, 'Content-Type': 'application/json' },
+            body: JSON.stringify({content}),
+        })
+    }
+
+    renderPosts(token);
+    modal.style.display = "none";
 }
 
 
@@ -94,7 +122,9 @@ export default async function renderFeed(token){
         newPostButton.innerText = 'New Post'
         
         newPostButton.addEventListener("click", newPostButtonClicked, false)
+        newPostButton.token = token;
         
         document.getElementById("container_header").appendChild(newPostButton)
+
     }
 }
