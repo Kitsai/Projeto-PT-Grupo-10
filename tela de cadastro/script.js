@@ -1,4 +1,4 @@
-document.getElementById('botao_cadastro').addEventListener('click', criarCadastro);
+document.getElementById('botao_cadastro').onclick = criarCadastro;
 
 
 async function criarCadastro() {
@@ -16,12 +16,12 @@ async function criarCadastro() {
         username,
         email,
         password,
-        nome,
         gender,
         jobTitle,
         profile_picture,
-    
     };
+
+    console.log(novoUsuario)
 
 
     fetch('http://localhost:3000/signup', {
@@ -35,8 +35,6 @@ async function criarCadastro() {
     .then(data => {
         console.log('Cadastro bem-sucedido', data);
         window.location.href = "../home/página de login.html"
-
-
     })
     .catch(error => {
         console.error('Erro no cadastro', error);

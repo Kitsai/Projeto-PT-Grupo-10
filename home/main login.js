@@ -19,8 +19,8 @@ async function validarLogin() {
 
         if(response.ok) {
             const {token} = await response.json();
-            console.log('login bem sucedido', token)
-          //  salvatoken(token); // funcao ainda a ser implementada
+            console.log('login bem sucedido', token);
+            sessionStorage.setItem('token', token);
             window.location.href = '../Feed/index.html';
         } else {
             mensagemErro.style.display = 'block';
