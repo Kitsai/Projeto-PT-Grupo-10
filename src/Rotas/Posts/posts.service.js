@@ -42,7 +42,23 @@ class PostsService {
                 throw new Error('Post não existe')
             }
             throw e
-        })
+        });
+    }
+
+    async update(id, content) {
+        return await prisma.post.update({
+            where: {
+                id,
+            },
+            data: {
+                content
+            }
+        }).catch(e => {
+            if(e.code === 'P2025') {
+                throw new Error('Post não existe')
+            }
+            throw e
+        });
     }
 }
 

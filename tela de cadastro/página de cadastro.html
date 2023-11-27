@@ -9,35 +9,48 @@
 </head>
 <body>
     <div class="caixa">
-        <form action="" class="form" id="cadastro">
+        <form action="/signup" method="post" class="form" id="cadastro">
             <div>
                 <h1 class="caixa_titulo">Crie uma conta nova</h1>
             </div>
             <div>
                 <img src="../assets/add image.png.png" alt="" class="imagem"> 
             </div>
-            <div class="caixa_grupo_input">
-                <input type="text" class="caixa_input" autofocus placeholder="Email">
+            <div class="caixa_mensagem caixa_mensagem_erro" id="mensagem_erro" style="display: none;" >
+                Esse email já está em uso. Tente novamente
             </div>
             <div class="caixa_grupo_input">
-                <input type="password" class="caixa_input" autofocus placeholder="Senha">
+                <input type="text" class="caixa_input" id="usuario" autofocus placeholder="Nome de usuário" required>
             </div>
             <div class="caixa_grupo_input">
-                <input type="text" class="caixa_input" autofocus placeholder="Nome">
+                <input type="text" class="caixa_input" id="email" autofocus placeholder="Email" required>
+            </div>
+            <div class="caixa_grupo_input">
+                <input type="password" class="caixa_input" id="password" autofocus placeholder="Senha" required>
+            </div>
+            <div class="caixa_grupo_input">
+                <input type="text" class="caixa_input" id="nome" autofocus placeholder="Nome" required>
             </div>
             <div class="custom-select">
-                <select autofocus>
-                    <option value="0">Selecione seu Gênero</option>
-                    <option value="1">Homem</option>
-                    <option value="2">Mulher</option>
-                    <option value="3">Prefiro não dizer</option>
+                <select autofocus required id="genero">
+                    <option value="Selecione seu Gênero">Selecione seu Gênero</option>
+                    <option value="Homem">Homem</option>
+                    <option value="Mulher">Mulher</option>
+                    <option value="Prefiro não dizer">Prefiro não dizer</option>
                 </select>
             </div>
-            <div class="caixa_grupo_input">
-                <input type="text" class="caixa_input" autofocus placeholder="Cargo">
+            <div class="custom-select">
+                <select autofocus required id="cargo">
+                    <option value="Selecione seu cargo">Selecione seu cargo</option>
+                    <option value="Presidente">Presidente</option>
+                    <option value="Vice-presidente">Vice-presidente</option>
+                    <option value="Gerente">Gerente</option>
+                    <option value="Diretor">Diretor</option>
+                    <option value="Funcionário">Funcionário</option>
+                    <option value="Estagiário">Estagiário</option>
+                </select>
             </div>
-            <button class="caixa_botao" type = submit>Cadastre-se</button>
-            </p>
+            <button class="caixa_botao" type="button" id="botao_cadastro">Cadastre-se</button>
             <p class="caixa_texto">
                 <span>Já tem uma conta?</span>
                 <a class="caixa_link" href="../home/página de login.html" id="linkCreateAccount" >Entre aqui</a>
@@ -46,4 +59,4 @@
     </div>
     <script src="./script.js"></script>
 </body>
-</html> 
+</html>
