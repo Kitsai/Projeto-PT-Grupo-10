@@ -24,7 +24,7 @@ body{
     align-items: center;
 }
 
-.container #container_header button {
+.container #container_header #new_post_button {
     position: absolute;
     right: 5%;
     font-size: 1rem;
@@ -33,6 +33,7 @@ body{
     padding: 0.5rem;
     border-radius: var(--raio-borda);
     background-color: var(--cor-primaria);
+    color: white;
     cursor: pointer;
 }
 

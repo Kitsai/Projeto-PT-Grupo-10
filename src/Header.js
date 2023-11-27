@@ -1,7 +1,8 @@
 import { currentUser,updateUser } from "./Current_user.js";
-import { renderPosts } from "./RenderPosts.js";
 
-export const renderHeader = (page) => {
+import { renderFeed } from "../Feed/Render_Feed.js";
+
+export default function renderHeader (page) {
     const header = document.body.querySelector("header")
     const logado = currentUser != null
 
@@ -42,8 +43,7 @@ const exit_button_clicked = (evt) => {
 
     switch(page) {
         case "feed":
-            document.querySelector(".posts").innerHTML = ""
-            renderPosts()
+            renderFeed()
             break
         default:
             break
