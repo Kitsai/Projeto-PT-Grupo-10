@@ -1,22 +1,26 @@
-import { currentUser,updateUser } from "./Current_user.js";
-import { renderFeed } from "../Feed/Render_Feed.js";
+import renderFeed from "../Feed/Render_Feed.js";
 
 export default function renderHeader (page) {
+
+    const token = sessionStorage.getItem('token');
+    const username = sessionStorage.getItem('username');
+    const profile_picture = sessionStorage.getItem('profile_picture');
+
+
     const header = document.body.querySelector("header")
-    const logado = currentUser != null
 
     if(header.querySelector(".header_content") != null) {
         header.removeChild(header.querySelector(".header_content"))
     }
 
     const header_content = document.createElement("div")
-    header_content.id = (logado)? "header_logado" : "header_deslogado"
+    header_content.id = (token)? "header_logado" : "header_deslogado"
     header_content.classList.add("header_content")
 
-    if(logado) {
+    if(token) {
         header_content.innerHTML = '<a href="" class="header_profile"><img src="'
-        + currentUser.img + '" alt="profile picture"> '
-        + currentUser.name + '</a>'
+        + profile_picture + '" alt="profile picture"> '
+        + username + '</a>'
 
         const logout = document.createElement("button")
         logout.id = 'exit_button'
@@ -38,11 +42,13 @@ export default function renderHeader (page) {
 const exit_button_clicked = (evt) => {
     const page = evt.currentTarget.myParam
     
-    updateUser(null)
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('profile_picture');
 
     switch(page) {
         case "feed":
-            renderFeed()
+            renderFeed(null)
             break
         default:
             break

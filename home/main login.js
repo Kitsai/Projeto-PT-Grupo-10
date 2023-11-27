@@ -1,3 +1,20 @@
+async function setData(token) {
+    sessionStorage.setItem('token', token);
+    const res = await fetch('http://localhost:3000/user', {
+        method: 'GET',
+        headers: { "Authorization": 'Bearer ' + token, 'Content-Type': 'application/json' },
+    });
+
+    if(res.ok) {
+        const user = await res.json();
+
+        sessionStorage.setItem('username', user.username);
+        sessionStorage.setItem('profile_picture', user.profile_picture);
+    } else {
+        console.error('Erro ao pegar dados do usuario', res.status, res.statusText);
+    }
+}
+
 
 async function validarLogin() {
     var email = document.getElementById("email").value;
@@ -20,7 +37,9 @@ async function validarLogin() {
         if(response.ok) {
             const {token} = await response.json();
             console.log('login bem sucedido', token);
-            sessionStorage.setItem('token', token);
+
+            setData(token);
+
             window.location.href = '../Feed/index.html';
         } else {
             mensagemErro.style.display = 'block';

@@ -19,7 +19,7 @@ async function deletePostClicked(event) {
 }
 
 function editPostClicked(event) {
-    const postContent = event.currentTarget.postContent;
+     const postContent = event.currentTarget.postContent;
     
     const newPostModal = document.getElementById("modalPost");
     const postModalButton = document.getElementById("modalPost-button");
@@ -159,7 +159,9 @@ const postModalButtonClicked = async (event) => {
 // GERAL
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export default async function renderFeed(token){
+export default async function renderFeed(){
+
+    const token = sessionStorage.getItem('token');
     
     await renderPosts(token)
     
