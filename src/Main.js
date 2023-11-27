@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import authRouter from './auth/auth.controller.js';
 import postsRouter from './Rotas/Posts/posts.controller.js';
+import userRouter from './Rotas/User/user.controller.js';
 
 const app = express();
 
@@ -16,5 +17,6 @@ app.use(express.json());
 
 app.use(authRouter);
 app.use(postsRouter);
+app.use(userRouter);
 
 app.listen(3000, () => console.log('Server rodando na porta 3000'));
