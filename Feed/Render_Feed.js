@@ -148,6 +148,8 @@ const postModalButtonClicked = async (event) => {
         return;
     }
     
+    //destivar padrao de recarregar.
+    //atualizar estado local.
     renderPosts(token);
     modal.style.display = "none";
 }

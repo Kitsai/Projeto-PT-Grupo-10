@@ -1,5 +1,6 @@
 document.getElementById('botao_cadastro').addEventListener('click', criarCadastro);
 
+
 async function criarCadastro() {
     console.log("botão clicado")
     const username = document.getElementById('usuario').value;

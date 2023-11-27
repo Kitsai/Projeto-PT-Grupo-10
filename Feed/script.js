@@ -12,5 +12,7 @@ window.onclick = (event) => {
     }
 }
 
+//event prevent default
+
 // renderHeader("feed")
 renderFeed(token)

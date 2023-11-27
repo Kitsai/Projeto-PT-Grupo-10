@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+
 class UserService {
     async create(username, password, profile_picture, gender, email, jobTitle) {
         return await prisma.user.create({
