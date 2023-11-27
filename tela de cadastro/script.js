@@ -10,7 +10,6 @@ async function criarCadastro() {
     const gender = document.getElementById('genero').value;
     const jobTitle = document.getElementById('cargo').value;
     const profile_picture = ''
-    const mensagemErro = document.getElementById("mensagem_erro");
 
     const novoUsuario = {
         username,
@@ -23,25 +22,19 @@ async function criarCadastro() {
     
     };
 
-
-    fetch('http://localhost:3000/signup', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(novoUsuario),
-    })
-    .then(response => response.json())
-    .then(data => {
+    try {
+        const response = await fetch('http://localhost:3000/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(novoUsuario),
+        });
+    
+        const data = await response.json();
         console.log('Cadastro bem-sucedido', data);
-        window.location.href = "../home/página de login.html"
-
-
-    })
-    .catch(error => {
+        window.location.href = "../home/página de login.html";
+    } catch (error) {
         console.error('Erro no cadastro', error);
-    });
-
-    console.log('Depois do fetch');
-    console.log('Dados do novo usuário:', novoUsuario);
+    }
 }
