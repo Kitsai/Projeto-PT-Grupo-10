@@ -39,7 +39,7 @@ postsRouter.get('/posts', jwtGuardNonBlocking, async (req, res) => {
             return {
                 authorized: false,
                 profilePicture: author.profile_picture,
-                name: author.username,
+                username: author.username,
                 id,
                 authorId,
                 content,
