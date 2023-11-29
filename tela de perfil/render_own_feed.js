@@ -33,14 +33,15 @@ function editPostClicked(event) {
     simplemde.value(postContent);
 }
 
-async function renderPosts(token) {
+export async function renderPosts(token, userId) {  // adiciona como parametro o id do usuario 
     const postContainer = document.querySelector(".posts")
     
     postContainer.innerText = ""
     
-    
-    const res = await fetch('http://localhost:3000/posts', {
-        headers: (token)? {Authorization: 'Bearer ' + token} : {}
+    // filtra os posts específicos do user
+    const url = userId ? `http://localhost:3000/user/${userId}/posts` : 'http://localhost:3000/posts';
+    const res = await fetch(url, {
+        headers: token ? { Authorization: 'Bearer ' + token } : {}
     });
     
     console.log(res);
@@ -159,11 +160,11 @@ const postModalButtonClicked = async (event) => {
 // GERAL
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export default async function renderFeed(){
+export default async function renderFeed(userId){ //parametro para renderizar o feed
 
     const token = sessionStorage.getItem('token');
     
-    await renderPosts(token)
+    await renderPosts(token, userId) //parametro para renderizar os posts
     
     if(document.getElementById("new_post_button") != null) {
         document.getElementById("new_post_button").remove()
@@ -181,4 +182,32 @@ export default async function renderFeed(){
         document.getElementById("container_header").appendChild(newPostButton)
         
     }
+}
+
+export async function loadUserProfile() { // funcao para carregar as informacoes do usuario
+    const token = sessionStorage.getItem('token');
+    const res = await fetch('http://localhost:3000/user/profile', {
+        headers: { Authorization: 'Bearer ' + token }
+    });
+
+    if (!res.ok) {
+        console.error('Erro ao obter perfil do usuário');
+        return;
+    }
+
+    const userProfile = await res.json();
+
+    // atualiza as informaçoes da pagina html
+    const fotoPerfil = document.getElementById('foto_perfil');
+    const nomeUsuario = document.getElementById('usuario');
+    const cargo = document.getElementById('cargo');
+    const genero = document.getElementById('genero');
+    const email = document.getElementById('email');
+
+    // Atualize os elementos HTML com as informações do usuário
+    fotoPerfil.src = userProfile.profile_picture;
+    nomeUsuario.textContent = userProfile.username;
+    cargo.textContent = userProfile.jobTitle;
+    genero.textContent = userProfile.gender;
+    email.textContent = userProfile.email;
 }

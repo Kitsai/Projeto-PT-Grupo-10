@@ -60,6 +60,15 @@ class PostsService {
             throw e
         });
     }
+    
+    async getAllByUserId(userId) {
+        return await prisma.post.findMany({
+            where: {
+                authorId: userId
+            }
+        });
+    }
+
 }
 
 export default PostsService;
