@@ -10,6 +10,8 @@ async function setData(token) {
 
         sessionStorage.setItem('username', user.username);
         sessionStorage.setItem('profile_picture', user.profile_picture);
+        sessionStorage.setItem('userId', user.Id)
+
     } else {
         console.error('Erro ao pegar dados do usuario', res.status, res.statusText);
     }

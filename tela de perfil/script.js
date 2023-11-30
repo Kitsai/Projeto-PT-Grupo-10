@@ -1,5 +1,6 @@
 import renderHeader from '../src/Header.js'
-import * as renderOwnFeed from './render_own_feed.js';
+import renderProfileFeed from './render_own_feed.js';
+import loadUserProfile from './render_own_feed.js';
 
 const modal = document.getElementById("modalPost");
 
@@ -10,20 +11,21 @@ window.onclick = (event) => {
     }
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-    await loadUserProfile();
+// document.addEventListener('DOMContentLoaded', async () => {
+//     await loadUserProfile();
 
-    const userProfile = await fetch('http://localhost:3000/user/profile' , {
-        headers: { Authorizantion: 'Bearer ' + sessionStorage.getItem('token') }
-    });
+//     const userProfile = await fetch('http://localhost:3000/user/profile' , {
+//         headers: { Authorizantion: 'Bearer ' + sessionStorage.getItem('token') }
+//     });
 
-    const { id: userId } = await userProfile.json();
+//     const { id: userId } = await userProfile.json();
 
-    await renderPosts(sessionStorage.getItem('token'), userId)
-})
+//     await renderPosts(sessionStorage.getItem('token'), userId)
+// })
 
 //event prevent default
 
-renderOwnFeed.loadUserProfile();
-renderOwnFeed.default();
+const userId = sessionStorage.getItem('userId');
+
+loadUserProfile(userId);
 renderHeader("feed");

@@ -1,5 +1,6 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // POSTS
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const md = window.markdownit();
 
@@ -35,7 +36,6 @@ function editPostClicked(event) {
 
 export async function renderPosts(token, userId) {  // adiciona como parametro o id do usuario 
     const postContainer = document.querySelector(".posts")
-    
     postContainer.innerText = ""
     
     // filtra os posts específicos do user
@@ -44,13 +44,18 @@ export async function renderPosts(token, userId) {  // adiciona como parametro o
         headers: token ? { Authorization: 'Bearer ' + token } : {}
     });
     
+    console.log(token, userId)
+
     console.log(res);
     
     const posts = await res.json();
     
-    console.log(posts);
-    
-    posts.forEach( ({authorized, profilePicture, username, id, authorId, content, createdAt, updatedAt}) => {
+
+    if (posts)
+    posts.forEach( ({id, authorId, content, createdAt, updatedAt}) => {
+
+        const username = sessionStorage.getItem('username')
+        const profile_picture = sessionStorage.getItem('profile_picture')
         const postCard = document.createElement("div")
         
         
@@ -67,7 +72,7 @@ export async function renderPosts(token, userId) {  // adiciona como parametro o
         
         postCard.innerHTML = '<div class="post_header"><a href="' 
         + linkDados + '" class="dados"> <img src="data:image/png;base64,'
-        + profilePicture + '" alt="profile picture"> <h2>'
+        + profile_picture + '" alt="profile picture"> <h2>'
         + username + '</h2>'
         + date + '</a>' 
         + '<div class="buttons_container"><button class="edit_button postModal-button" type="button"><img src="../assets/edit_icon.svg" alt="editar"></button>'
@@ -76,7 +81,7 @@ export async function renderPosts(token, userId) {  // adiciona como parametro o
         + linkPost + '" class="content">'
         + md.render(content) + '</a>'
         
-        if(authorized) {
+        if(true) {
             postCard.querySelector(".buttons_container").style.display = "block";
 
             // edit button
@@ -160,10 +165,11 @@ const postModalButtonClicked = async (event) => {
 // GERAL
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export default async function renderFeed(userId){ //parametro para renderizar o feed
+export default async function renderProfileFeed(){ //parametro para renderizar o feed
 
     const token = sessionStorage.getItem('token');
-    
+    const userId = sessionStorage.getItem('userId')
+
     await renderPosts(token, userId) //parametro para renderizar os posts
     
     if(document.getElementById("new_post_button") != null) {
@@ -186,27 +192,18 @@ export default async function renderFeed(userId){ //parametro para renderizar o 
 
 export async function loadUserProfile() { // funcao para carregar as informacoes do usuario
     const token = sessionStorage.getItem('token');
-    const res = await fetch('http://localhost:3000/user/profile', {
-        headers: { Authorization: 'Bearer ' + token }
-    });
 
-    if (!res.ok) {
-        console.error('Erro ao obter perfil do usuário');
-        return;
-    }
-
-    const userProfile = await res.json();
 
     // atualiza as informaçoes da pagina html
     const fotoPerfil = document.getElementById('foto_perfil');
-    const nomeUsuario = document.getElementById('usuario');
+    const usuario = document.getElementById('usuario');
     const cargo = document.getElementById('cargo');
     const genero = document.getElementById('genero');
     const email = document.getElementById('email');
 
     // Atualize os elementos HTML com as informações do usuário
     fotoPerfil.src = userProfile.profile_picture;
-    nomeUsuario.textContent = userProfile.username;
+    usuario.textContent = userProfile.username;
     cargo.textContent = userProfile.jobTitle;
     genero.textContent = userProfile.gender;
     email.textContent = userProfile.email;
