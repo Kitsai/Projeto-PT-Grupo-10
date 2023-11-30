@@ -21,12 +21,29 @@ userRouter.get('/user/:id/posts', jwtGuard, async (req,res) => {
 
     const posts =  await postsService.getAllByUser(userId)
 
-    console.log(posts)
-
     res.status(200).json(posts)
-
-
 })
+
+userRouter.put('/user/edit-profile', jwtGuard, async (req, res) => {
+    const userId = +req.params.id
+    const { username, email, password, gender, jobTitle, profile_picture } = req.body;
+
+    try {
+        const updatedUser = await userService.editUserProfile(userId, {
+            username,
+            email,
+            password,
+            gender,
+            jobTitle,
+            profile_picture,
+        });
+
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        console.error('Erro na edição do perfil', error);
+        res.status(500).json({ error: 'Erro na edição do perfil' });
+    }
+});
 
 
 export default userRouter;

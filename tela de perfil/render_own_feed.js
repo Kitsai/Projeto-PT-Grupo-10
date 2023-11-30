@@ -44,7 +44,6 @@ export async function renderPosts(token, userId) {  // adiciona como parametro o
         headers: token ? { Authorization: 'Bearer ' + token } : {}
     });
     
-    console.log(token, userId)
 
     console.log(res);
     
@@ -185,26 +184,7 @@ export default async function renderProfileFeed(){ //parametro para renderizar o
         newPostButton.addEventListener("click", newPostButtonClicked, false)
         newPostButton.token = token;
         
-        document.getElementById("container_header").appendChild(newPostButton)
+        document.getElementById("perfil_header").appendChild(newPostButton)
         
     }
-}
-
-export async function loadUserProfile() { // funcao para carregar as informacoes do usuario
-    const token = sessionStorage.getItem('token');
-
-
-    // atualiza as informaçoes da pagina html
-    const fotoPerfil = document.getElementById('foto_perfil');
-    const usuario = document.getElementById('usuario');
-    const cargo = document.getElementById('cargo');
-    const genero = document.getElementById('genero');
-    const email = document.getElementById('email');
-
-    // Atualize os elementos HTML com as informações do usuário
-    fotoPerfil.src = userProfile.profile_picture;
-    usuario.textContent = userProfile.username;
-    cargo.textContent = userProfile.jobTitle;
-    genero.textContent = userProfile.gender;
-    email.textContent = userProfile.email;
 }

@@ -11,24 +11,29 @@
     <title>Feed</title>
 </head>
 <body>
-    <header>
+    <header >
         <img id="logo" src="../assets/propaganda.png" alt="logo">
     </header>
     <main>
-            <section class="container">
-            <div class = "container_header">
+        <section class="container_perfil">
+            <div id = "perfil_header">
                 <h2>
                     Perfil
                 </h2>
             </div>
-            <img id="foto_perfil" src="" alt="Foto de perfil"> 
-            <div class="caixa_texto" id="usuario">usuario</div>
-            <div class="caixa_texto" id="cargo">cargo</div>
-            <div class="caixa_texto" id="genero">genero</div>
-            <div class="caixa_texto" id="email">email</div>
-        </section>
-        
-        <section class="container">
+            
+            <section class = "perfil">
+                <div class = "foto_perfil">
+                    <img class = "foto" src="" alt="Foto de perfil"> 
+                </div>
+                
+                <strong>Nome de usuário: </strong><span class="perfil_texto" id="usuario"></span><br>
+                <strong>Cargo empresarial: </strong><span class="perfil_texto" id="cargo">Cargo: </span><br>
+                <strong>Email: </strong><span class="perfil_texto" id="email">Email: </span><br>
+                <strong>Gênero: </strong><span class="perfil_texto" id="genero">Gênero: </span><br>
+                <button class="caixa_botao" onclick="location.href = '../editar perfil/editar_perfil.html'">Editar Perfil</button>
+            </section>
+
             <div class="container_header">
                 <h2>
                     Suas publicações
@@ -38,6 +43,7 @@
                 
             </section>
         </section>
+        
         <div id="modalPost" class="modal caixa">
             
             <div id="modalPost-content" class="modal-content">

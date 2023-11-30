@@ -37,6 +37,18 @@ class UserService {
             }
         })
     }
+
+    async editUserProfile(userId, newInfo) {
+        try{
+            const updatedUser = await prisma.user.update({
+                where: {id: userId},
+                data: newInfo
+            });
+            return updatedUser
+        } catch (error) {
+            throw new Error("Algo deu errado na edição")
+        }
+    }
 }
 
 export default UserService

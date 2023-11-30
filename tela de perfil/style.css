@@ -2,29 +2,56 @@
 
 body{
     background-color: var(--cor-secundaria);
+    margin-top: 100px;
 }
 
-.container {
-    height: fit-content;
-    width: 70%;
-    position: absolute;
+.foto_perfil {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%; 
+}
+.foto_perfil #foto {
+    display: inline;
     margin: 0 auto;
-    top: 10vh;
-    left: 15%;
-    background-color: var(--cor-fundo);
+    height: 100%;
+    width: auto;
+}
 
+.container_perfil {
+    height: fit-content;
+    width: 1350px;
+    position: absolute;
+    border-bottom: 1cm;
+    border-bottom-width: auto;
+    border-bottom-color: black;
+    background-color: var(--cor-fundo);
+    align-self: center;
     align-items: center;
     padding: 2rem;
+    left: 10%;
+    right: 10%;
+    top: 10% ;
+    
 }
 
-.container #container_header {
+
+.container_perfil #container_header {
     border-bottom: 1px dotted black;
     margin:1rem;
     display: flex;
     align-items: center;
 }
 
-.container #container_header #new_post_button {
+.container_perfil #perfil_header {
+    border-bottom: 1px dotted black;
+    margin:1rem;
+    display: flex;
+    align-items: center;
+}
+
+.container_perfil #perfil_header #new_post_button {
     position: absolute;
     right: 5%;
     font-size: 1rem;
@@ -35,10 +62,11 @@ body{
     background-color: var(--cor-primaria);
     color: white;
     cursor: pointer;
+    transition: background 0.2s, border-color 0.3s;
 }
 
-.container #container_header button:hover {
-    background-color: var(--cor-primaria21);
+.container_perfil #container_header button:hover {
+    background-color: var(--cor-primaria2);
 }
 
 .container .posts {
@@ -51,13 +79,22 @@ body{
 
 .card {
     height: fit-content;
-    width: 100%;
+    width: 95%;
     background-color: var(--cor-primaria2);
     padding: 1rem;
     border-radius: 2rem;
     display: flex;
     flex-direction: column;
     gap: .25rem;
+    margin: 1rem;
+    text-justify: inter-word; 
+    
+}
+
+.caixa_botao {
+    width: 20%;
+    margin-left: 0px;
+    cursor: pointer;
 }
 
 .card a {
@@ -117,6 +154,7 @@ body{
 
 .card .content p {
     margin: 0 0 1rem 0;
+    text-justify: inter-word; 
 }
 
 .modal {

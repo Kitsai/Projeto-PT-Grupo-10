@@ -10,7 +10,12 @@ async function setData(token) {
 
         sessionStorage.setItem('username', user.username);
         sessionStorage.setItem('profile_picture', user.profile_picture);
-        sessionStorage.setItem('userId', user.Id)
+        sessionStorage.setItem('userId', user.id)
+        sessionStorage.setItem('cargo', user.jobTitle)
+        sessionStorage.setItem('gender', user.gender)
+        sessionStorage.setItem('email', user.email)
+
+        console.log(username, profile_picture, cargo)
 
     } else {
         console.error('Erro ao pegar dados do usuario', res.status, res.statusText);
@@ -39,10 +44,10 @@ async function validarLogin() {
         if(response.ok) {
             const {token} = await response.json();
             console.log('login bem sucedido', token);
-
+            window.location.href = '../Feed/index.html';
             setData(token);
 
-            window.location.href = '../Feed/index.html';
+
         } else {
             mensagemErro.style.display = 'block';
             console.error('credenciais incorretas');
