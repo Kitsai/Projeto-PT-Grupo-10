@@ -40,7 +40,8 @@ async function validarLogin() {
 
             setData(token);
 
-            window.location.href = '../Feed/index.html';
+            window.location.href = localStorage.getItem("foca@pagina-anterior") || '../Feed/index.html';
+            
         } else {
             mensagemErro.style.display = 'block';
             console.error('credenciais incorretas');

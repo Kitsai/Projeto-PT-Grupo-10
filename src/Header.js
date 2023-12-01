@@ -1,5 +1,5 @@
 import renderFeed from "../Feed/Render_Feed.js";
-
+import renderComen from "../Comentários/Render_Comen.js"
 export default function renderHeader (page) {
 
     const token = sessionStorage.getItem('token');
@@ -25,7 +25,7 @@ export default function renderHeader (page) {
         const logout = document.createElement("button")
         logout.id = 'exit_button'
         logout.type = 'button'
-        logout.innerHTML = '<img src="../assets/exit-14.svg" alt="exit">'
+        logout.innerHTML = '<img src="../assets/log-out.svg" alt="exit">'
 
         logout.addEventListener("click", exit_button_clicked,false)
         logout.myParam = page
@@ -34,6 +34,12 @@ export default function renderHeader (page) {
     } else {
         header_content.innerHTML = '<a id="header_cadastro" href="../tela de cadastro/página de cadastro.html">Crie uma conta</a>'
         + '<a id="header_entrar" href="../home/página de login.html">ENTRAR</a>'
+        
+        header_content.addEventListener('click', () => {
+            
+            localStorage.setItem("foca@pagina-anterior", window.location.href);
+        })
+        
     }
 
     header.appendChild(header_content)
@@ -50,6 +56,8 @@ const exit_button_clicked = (evt) => {
         case "feed":
             renderFeed(null)
             break
+        case "comen":
+            renderComen(null)
         default:
             break
     }

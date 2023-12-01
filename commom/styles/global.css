@@ -1,8 +1,8 @@
 body{
     --cor-primaria: #002850;
     --cor-primaria2: #00366b;
-    --cor-secundaria: rgb(253, 209, 128);
-    --cor-secundaria2: rgb(219, 184, 117);
+    --cor-secundaria: #c2e0f6;
+    --cor-secundaria2: #4069E2;
     --cor-fundo: #fffafa;
     --cor-fundo-escuro: #1b2533;
     --cor-branco: #FFFFFF;
@@ -38,7 +38,7 @@ header{
 }
 
 header #logo {
-    scale: 12%;
+    scale: 10.5%;
     display: inline-block;
     margin: 0 auto;
 
@@ -96,7 +96,7 @@ header #logo {
 }
 
 #header_logado a {
-    color: black;
+    color: #E8F5FF;
     text-decoration: none;
     display: flex;
     gap: .75rem;

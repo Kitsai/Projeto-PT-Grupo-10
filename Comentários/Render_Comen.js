@@ -173,7 +173,7 @@ export default async function renderComen(){
         const newPostButton = document.createElement("button")
         newPostButton.id = "new_post_button"
         newPostButton.type = "button"
-        newPostButton.innerText = 'New Post'
+        newPostButton.innerText = 'Comentar'
         
         newPostButton.addEventListener("click", newPostButtonClicked, false)
         newPostButton.token = token;
