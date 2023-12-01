@@ -1,5 +1,3 @@
-import { renderHeader } from '../src/Header.js'
-import { renderPosts } from '../src/RenderPosts.js'
+import {mockedPosts} from "../src/Feed_posts";
 
-renderHeader("comentarios")
-renderPosts()
+
