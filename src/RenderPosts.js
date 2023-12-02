@@ -7,7 +7,7 @@ export const renderPosts = () => {
     const postContainer = document.querySelector(".posts")
 
     const linkDados = (!logado) ? "../home/página de login.html" : "perfil"
-    const linkPost = (!logado) ? "../home/página de login.html" : "comentarios"
+    const linkPost = "../Comentarios/index.html"
     
     
     mockedPosts.forEach( post => {

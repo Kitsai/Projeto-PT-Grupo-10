@@ -55,7 +55,7 @@ async function renderPosts(token) {
         
         // const botao = (authorized)? '<button class="delete_button"><img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar"></button>': ''
         const linkDados = (!token) ? "../home/página de login.html" : "perfil"
-        const linkPost = (!token) ? "../home/página de login.html" : "comentarios"
+        const linkPost = "../Comentarios/index.html"
         
         const [year, month, day] = createdAt.split("T")[0].split("-");
         
