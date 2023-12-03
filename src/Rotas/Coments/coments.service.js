@@ -3,28 +3,24 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 class ComentsService {
-    async getAll() {
-        return await prisma.comen.findMany();
-    }
-
-    async getAllByUser(authorId) {
-        return await prisma.comen.findMany({
-            where: {
-                authorId
-            }
-        });
-    }
-
-    async getOne(id) {
-        return await prisma.comen.findUnique({
-            where: {
-                id
+    async getAll(postId){
+        return await prisma.comment.findMany({
+            where:{
+                postId
+            },
+            include:{
+                author:{
+                    select:{
+                        profile_picture:true,
+                        username:true
+                    }
+                }
             }
         });
     }
 
     async create(authorId, content) {
-        return await prisma.comen.create({
+        return await prisma.comment.create({
             data: {
                 authorId,
                 content
@@ -33,7 +29,7 @@ class ComentsService {
     }
 
     async delete(id) {
-        return await prisma.comen.delete({
+        return await prisma.comment.delete({
             where: {
                 id
             }
@@ -46,9 +42,9 @@ class ComentsService {
     }
 
     async update(id, content) {
-        return await prisma.comen.update({
+        return await prisma.comment.update({
             where: {
-                id,
+                id
             },
             data: {
                 content
