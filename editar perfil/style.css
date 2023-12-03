@@ -16,13 +16,26 @@
     background: #FFFFFF;
 }
 
-img{
+img {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%; 
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
     display: block;
     margin-top: 0rem;
     margin-bottom: 1.2rem;
     margin-left: auto;
     margin-right: auto;
     width: 35%;
+}
+
+img:hover{
+    cursor: pointer;
 }
 
 .custom-select{
