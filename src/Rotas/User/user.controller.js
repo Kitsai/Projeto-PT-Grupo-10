@@ -25,10 +25,10 @@ userRouter.get('/user/:id/posts', jwtGuard, async (req,res) => {
 })
 
 userRouter.put('/user/edit-profile', jwtGuard, async (req, res) => {
-    const userId = +req.params.id
     const { username, email, password, gender, jobTitle, profile_picture } = req.body;
 
     try {
+        const userId = req.user.id;
         const updatedUser = await userService.editUserProfile(userId, {
             username,
             email,

@@ -2,15 +2,12 @@ document.getElementById('botao_cadastro').onclick = criarCadastro;
 
 
 async function criarCadastro() {
-    console.log("botão clicado")
     const username = document.getElementById('usuario').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    const nome = document.getElementById('nome').value;
     const gender = document.getElementById('genero').value;
     const jobTitle = document.getElementById('cargo').value;
     const profile_picture = ''
-    const mensagemErro = document.getElementById("mensagem_erro");
 
     const novoUsuario = {
         username,

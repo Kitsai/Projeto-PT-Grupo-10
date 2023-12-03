@@ -4,17 +4,17 @@ import loadUserProfile from './render_own_feed.js';
 
 const modal = document.getElementById("modalPost");
 
+window.onload = function() {
+    const userId = sessionStorage.getItem('userId');
+    loadUserProfile(userId);
+    renderHeader("feed");
+}
 
 window.onclick = (event) => {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 }
-
-const userId = sessionStorage.getItem('userId');
-loadUserProfile(userId);
-renderHeader("feed");
-
 
 //atualiza
 const fotoPerfil = document.getElementById('foto_perfil');
@@ -25,7 +25,7 @@ const email = document.getElementById('email');
     
 usuario.innerText = sessionStorage.getItem('username')
 cargo.innerText = sessionStorage.getItem('cargo')
-genero.innerText = sessionStorage.getItem('cargo')
+genero.innerText = sessionStorage.getItem('genero')
 email.innerText = sessionStorage.getItem('email')
 fotoPerfil.src = 'data:image/png;base64,' + sessionStorage.getItem('profile_picture')
 

@@ -14,6 +14,7 @@ async function setData(token) {
         sessionStorage.setItem('cargo', user.jobTitle)
         sessionStorage.setItem('gender', user.gender)
         sessionStorage.setItem('email', user.email)
+        
 
         console.log(username, profile_picture, cargo)
 
