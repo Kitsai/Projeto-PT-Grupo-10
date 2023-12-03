@@ -1,5 +1,6 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // POSTS
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const md = window.markdownit();
 
@@ -33,23 +34,27 @@ function editPostClicked(event) {
     simplemde.value(postContent);
 }
 
-async function renderPosts(token) {
+export async function renderPosts(token, userId) {  // adiciona como parametro o id do usuario 
     const postContainer = document.querySelector(".posts")
-    
     postContainer.innerText = ""
     
-    
-    const res = await fetch('http://localhost:3000/posts', {
-        headers: (token)? {Authorization: 'Bearer ' + token} : {}
+    // filtra os posts específicos do user
+    const url = userId ? `http://localhost:3000/user/${userId}/posts` : 'http://localhost:3000/posts';
+    const res = await fetch(url, {
+        headers: token ? { Authorization: 'Bearer ' + token } : {}
     });
     
+
     console.log(res);
     
     const posts = await res.json();
     
-    console.log(posts);
-    
-    posts.forEach( ({authorized, profilePicture, username, id, authorId, content, createdAt, updatedAt}) => {
+
+    if (posts)
+    posts.forEach( ({id, authorId, content, createdAt, updatedAt}) => {
+
+        const username = sessionStorage.getItem('username')
+        const profile_picture = sessionStorage.getItem('profile_picture')
         const postCard = document.createElement("div")
         
         
@@ -66,7 +71,7 @@ async function renderPosts(token) {
         
         postCard.innerHTML = '<div class="post_header"><a href="' 
         + linkDados + '" class="dados"> <img src="data:image/png;base64,'
-        + profilePicture + '" alt="profile picture"> <h2>'
+        + profile_picture + '" alt="profile picture"> <h2>'
         + username + '</h2>'
         + date + '</a>' 
         + '<div class="buttons_container"><button class="edit_button postModal-button" type="button"><img src="../assets/edit_icon.svg" alt="editar"></button>'
@@ -75,7 +80,7 @@ async function renderPosts(token) {
         + linkPost + '" class="content">'
         + md.render(content) + '</a>'
         
-        if(authorized) {
+        if(true) {
             postCard.querySelector(".buttons_container").style.display = "block";
 
             // edit button
@@ -159,11 +164,12 @@ const postModalButtonClicked = async (event) => {
 // GERAL
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export default async function renderFeed(){
+export default async function renderProfileFeed(){ //parametro para renderizar o feed
 
     const token = sessionStorage.getItem('token');
-    
-    await renderPosts(token)
+    const userId = sessionStorage.getItem('userId')
+
+    await renderPosts(token, userId) //parametro para renderizar os posts
     
     if(document.getElementById("new_post_button") != null) {
         document.getElementById("new_post_button").remove()
@@ -178,7 +184,7 @@ export default async function renderFeed(){
         newPostButton.addEventListener("click", newPostButtonClicked, false)
         newPostButton.token = token;
         
-        document.getElementById("container_header").appendChild(newPostButton)
+        document.getElementById("perfil_header").appendChild(newPostButton)
         
     }
 }
