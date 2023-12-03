@@ -21,7 +21,7 @@ comentsRouter.get('/posts/:postId/comments', jwtGuardNonBlocking, async (req, re
     res.status(200).json(listaComments);
 })
 
-comentsRouter.get('/posts/:postId/comment/:id', jwtGuardNonBlocking, async (req, res) => {
+comentsRouter.get('/comment/:id', jwtGuardNonBlocking, async (req, res) => {
     const user = req.user;
     const postId = +req.params.postId;
     const commentId = +req.params.id;
@@ -58,7 +58,7 @@ comentsRouter.post('/posts/:postId/comment', jwtGuard, async (req,res) => {
     }
 });
 
-comentsRouter.delete('/posts/:postId/comment/:commentId', jwtGuard, async (req, res) =>{
+comentsRouter.delete('/comment/:id', jwtGuard, async (req, res) =>{
     const commentId = +req.params.commentId;
     const user = req.user;
     const postId = +req.params.postId;
@@ -72,7 +72,7 @@ comentsRouter.delete('/posts/:postId/comment/:commentId', jwtGuard, async (req, 
     }
 })
 
-comentsRouter.put('/posts/:postId/comment/:id', jwtGuard, async (req,res) => {
+comentsRouter.put('/comment/:id', jwtGuard, async (req,res) => {
     const user = req.user;
     const content = req.body.content;
     const postId = +req.params.postId;
