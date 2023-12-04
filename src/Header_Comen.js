@@ -35,7 +35,7 @@ export default function renderHeader (page) {
         header_content.innerHTML = '<a id="header_cadastro" href="../tela de cadastro/página de cadastro.html">Crie uma conta</a>'
         + '<a id="header_entrar" href="../home/página de login.html">ENTRAR</a>'
         header_content.addEventListener('click', () => {
-            alert('click')
+            
             localStorage.setItem("foca@pagina-anterior", window.location.href);
         })
     }

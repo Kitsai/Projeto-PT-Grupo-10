@@ -1,5 +1,5 @@
 import renderFeed from "../Feed/Render_Feed.js";
-import renderComen from "../Comentarios/Render_Comen.js"
+
 export default function renderHeader (page) {
 
     const token = sessionStorage.getItem('token');
@@ -56,8 +56,6 @@ const exit_button_clicked = (evt) => {
         case "feed":
             renderFeed(null)
             break
-        case "comen":
-            renderComen(null)
         default:
             break
     }

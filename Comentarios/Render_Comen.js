@@ -100,7 +100,7 @@ async function renderPosts(token) {
 // MODAL
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export const simplemde = new SimpleMDE({ element: document.getElementById("modalPost-text"), spellChecker: false , hideIcons: ["image"]});
+export const simplemde = new SimpleMDE({ element: document.getElementById("modalPost-text"), spellChecker: false , hideIcons: ["image", "guide"]});
 
 const newPostButtonClicked = (event) => {
     const newPostModal = document.getElementById("modalPost");

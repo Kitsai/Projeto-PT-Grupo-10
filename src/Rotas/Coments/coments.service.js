@@ -36,15 +36,10 @@ class ComentsService {
         })
     }
 
-    async create(authorId, postId,content) {
+    async create(data) {
+        
         return await prisma.comment.create({
-            where:{
-                postId
-            },
-            data: {
-                authorId,
-                content
-            }
+            data
         })
     }
 

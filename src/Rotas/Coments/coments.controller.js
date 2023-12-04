@@ -30,14 +30,11 @@ comentsRouter.get('/comment/:id', jwtGuardNonBlocking, async (req, res) =>{
 })
 
 
-comentsRouter.post('/posts/:postId/comment', jwtGuard, async (req,res) => {
+comentsRouter.post('/comment', jwtGuard, async (req,res) => {
 
-    const user = req.user;
-    const postId = +req.params.postId;
-    const content = req.body.content;
-
-    try {
-        const commentCriado = await commentService.create(user.id, postId,content);
+    const content = req.body;
+   try {
+        const commentCriado = await commentService.create(content);
         res.status(201).json(commentCriado);
     } catch (e) {
         res.status(400).json({message: e.message});
@@ -60,13 +57,14 @@ comentsRouter.delete('/comment/:id', jwtGuard, async (req, res) =>{
 
 comentsRouter.put('/comment/:id', jwtGuard, async (req,res) => {
     const user = req.user;
-    const content = req.body.content;
-    const comment = await comment.getOne(commentId);
+    const content = req.body;
+    const commentId = +req.params.id;
+    const comment = await commentService.getOne(commentId);
 
     if(user.id !== comment.authorId) return res.status(401).json({message: 'Usuário não autorizado'});
 
     try {
-        const commentAtualizado = await commentServicee.update(comment, content);
+        const commentAtualizado = await commentService.update(commentId, content);
         res.status(200).json(commentAtualizado);
     } catch (e) {
         res.status(400).json({message: e.message});
