@@ -71,9 +71,8 @@ async function renderPosts(token) {
         + date + '</a>' 
         + '<div class="buttons_container"><button class="edit_button postModal-button" type="button"><img src="../assets/edit_icon.svg" alt="editar"></button>'
         + '<button class="delete_button postModal-button" type="button"><img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar"></button></div>'
-        +'</div><a href="'
-        + linkPost + '" class="content">'
-        + md.render(content) + '</a>'
+        +'</div>'
+        + md.render(content) 
         
         if(authorized) {
             postCard.querySelector(".buttons_container").style.display = "block";

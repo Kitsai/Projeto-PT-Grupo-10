@@ -36,7 +36,6 @@ export default function renderHeader (page) {
         + '<a id="header_entrar" href="../home/página de login.html">ENTRAR</a>'
         
         header_content.addEventListener('click', () => {
-            
             localStorage.setItem("foca@pagina-anterior", window.location.href);
         })
         
