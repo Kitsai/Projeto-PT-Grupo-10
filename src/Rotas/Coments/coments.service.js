@@ -1,0 +1,61 @@
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+class ComentsService {
+    async getAll(postId){
+        return await prisma.comment.findMany({
+            where:{
+                postId
+            },
+            include:{
+                author:{
+                    select:{
+                        profile_picture:true,
+                        username:true
+                    }
+                }
+            }
+        });
+    }
+
+    async create(authorId, content) {
+        return await prisma.comment.create({
+            data: {
+                authorId,
+                content
+            }
+        })
+    }
+
+    async delete(id) {
+        return await prisma.comment.delete({
+            where: {
+                id
+            }
+        }).catch(e => {
+            if(e.code === 'P2025') {
+                throw new Error('Comentário não existe')
+            }
+            throw e
+        });
+    }
+
+    async update(id, content) {
+        return await prisma.comment.update({
+            where: {
+                id
+            },
+            data: {
+                content
+            }
+        }).catch(e => {
+            if(e.code === 'P2025') {
+                throw new Error('Comentário não existe')
+            }
+            throw e
+        });
+    }
+}
+
+export default ComentsService;

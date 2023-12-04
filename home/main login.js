@@ -48,7 +48,6 @@ async function validarLogin() {
             window.location.href = '../Feed/index.html';
             setData(token);
 
-
         } else {
             mensagemErro.style.display = 'block';
             console.error('credenciais incorretas');

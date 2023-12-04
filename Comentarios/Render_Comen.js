@@ -55,7 +55,7 @@ async function renderPosts(token) {
         
         // const botao = (authorized)? '<button class="delete_button"><img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar"></button>': ''
         const linkDados = (!token) ? "../home/página de login.html" : "perfil"
-        const linkPost = "../Comentarios/index.html"
+        const linkPost = (!token) ? "../home/página de login.html" : "comentarios"
         
         const [year, month, day] = createdAt.split("T")[0].split("-");
         
@@ -159,7 +159,7 @@ const postModalButtonClicked = async (event) => {
 // GERAL
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export default async function renderFeed(){
+export default async function renderComen(){
 
     const token = sessionStorage.getItem('token');
     
@@ -173,7 +173,7 @@ export default async function renderFeed(){
         const newPostButton = document.createElement("button")
         newPostButton.id = "new_post_button"
         newPostButton.type = "button"
-        newPostButton.innerText = 'Novo post'
+        newPostButton.innerText = 'Comentar'
         
         newPostButton.addEventListener("click", newPostButtonClicked, false)
         newPostButton.token = token;

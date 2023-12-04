@@ -1,5 +1,5 @@
-import renderFeed from "../Feed/Render_Feed.js";
-import renderComen from "../Comentarios/Render_Comen.js"
+import renderComen from "../Comentários/Render_Comen.js";
+
 export default function renderHeader (page) {
 
     const token = sessionStorage.getItem('token');
@@ -18,14 +18,14 @@ export default function renderHeader (page) {
     header_content.classList.add("header_content")
 
     if(token) {
-        header_content.innerHTML = '<a href="../tela de perfil/index.html" class="header_profile"><img src="'
+        header_content.innerHTML = '<a href="" class="header_profile"><img src="'
         + profile_picture + '" alt="profile picture"> '
         + username + '</a>'
 
         const logout = document.createElement("button")
         logout.id = 'exit_button'
         logout.type = 'button'
-        logout.innerHTML = '<img src="../assets/log-out.svg" alt="exit">'
+        logout.innerHTML = '<img src="../assets/exit-14.svg" alt="exit">'
 
         logout.addEventListener("click", exit_button_clicked,false)
         logout.myParam = page
@@ -34,36 +34,28 @@ export default function renderHeader (page) {
     } else {
         header_content.innerHTML = '<a id="header_cadastro" href="../tela de cadastro/página de cadastro.html">Crie uma conta</a>'
         + '<a id="header_entrar" href="../home/página de login.html">ENTRAR</a>'
-        
         header_content.addEventListener('click', () => {
-            
+            alert('click')
             localStorage.setItem("foca@pagina-anterior", window.location.href);
         })
-        
     }
 
     header.appendChild(header_content)
 }
 
 const exit_button_clicked = (evt) => {
-    const destino = "../Feed/index.html"
-
     const page = evt.currentTarget.myParam
     
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('profile_picture');
+
     switch(page) {
-        case "feed":
-            renderFeed(null)
-            break
         case "comen":
             renderComen(null)
+            break
         default:
             break
     }
     renderHeader(page)
-    if (window.location.href !== destino) {
-        window.location.href = destino;
-    }
 }
