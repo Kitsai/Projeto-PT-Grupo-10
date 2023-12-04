@@ -40,12 +40,13 @@ export default function renderHeader (page) {
 }
 
 const exit_button_clicked = (evt) => {
+    const destino = "../Feed/index.html"
+
     const page = evt.currentTarget.myParam
     
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('profile_picture');
-
     switch(page) {
         case "feed":
             renderFeed(null)
@@ -54,4 +55,7 @@ const exit_button_clicked = (evt) => {
             break
     }
     renderHeader(page)
+    if (window.location.href !== destino) {
+        window.location.href = destino;
+    }
 }

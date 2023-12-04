@@ -2,14 +2,14 @@ document.getElementById('botao_cadastro').onclick = criarCadastro;
 
 
 async function criarCadastro() {
-    const username = document.getElementById('usuario').value;
+    const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    const gender = document.getElementById('genero').value;
-    const jobTitle = document.getElementById('cargo').value;
+    const gender = document.getElementById('gender').value;
+    const jobTitle = document.getElementById('jobTitle').value;
     const profile_picture = ''
 
-    const novoUsuario = {
+    const novousername = {
         username,
         email,
         password,
@@ -18,7 +18,7 @@ async function criarCadastro() {
         profile_picture,
     };
 
-    console.log(novoUsuario)
+    console.log(novousername)
 
 
     fetch('http://localhost:3000/signup', {
@@ -26,7 +26,7 @@ async function criarCadastro() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(novoUsuario),
+        body: JSON.stringify(novousername),
     })
     .then(response => response.json())
     .then(data => {
@@ -38,5 +38,5 @@ async function criarCadastro() {
     });
 
     console.log('Depois do fetch');
-    console.log('Dados do novo usuário:', novoUsuario);
+    console.log('Dados do novo usuário:', novousername);
 }

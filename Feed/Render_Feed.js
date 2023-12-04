@@ -173,7 +173,7 @@ export default async function renderFeed(){
         const newPostButton = document.createElement("button")
         newPostButton.id = "new_post_button"
         newPostButton.type = "button"
-        newPostButton.innerText = 'New Post'
+        newPostButton.innerText = 'Novo post'
         
         newPostButton.addEventListener("click", newPostButtonClicked, false)
         newPostButton.token = token;

@@ -11,15 +11,15 @@ async function setData(token) {
         sessionStorage.setItem('username', user.username);
         sessionStorage.setItem('profile_picture', user.profile_picture);
         sessionStorage.setItem('userId', user.id)
-        sessionStorage.setItem('cargo', user.jobTitle)
+        sessionStorage.setItem('jobTitle', user.jobTitle)
         sessionStorage.setItem('gender', user.gender)
         sessionStorage.setItem('email', user.email)
         
 
-        console.log(username, profile_picture, cargo)
+        console.log(username, profile_picture, jobTitle)
 
     } else {
-        console.error('Erro ao pegar dados do usuario', res.status, res.statusText);
+        console.error('Erro ao pegar dados do username', res.status, res.statusText);
     }
 }
 
