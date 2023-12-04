@@ -34,7 +34,7 @@ function editPostClicked(event) {
     simplemde.value(postContent);
 }
 
-export async function renderPosts(token, userId) {  // adiciona como parametro o id do usuario 
+export async function renderPosts(token, userId) {  // adiciona como parametro o id do username 
     const postContainer = document.querySelector(".posts")
     postContainer.innerText = ""
     
@@ -112,6 +112,7 @@ const newPostButtonClicked = (event) => {
     const newPostModal = document.getElementById("modalPost");
     const postModalButton = document.getElementById("modalPost-button");
     
+
     newPostModal.style.display = "block";
     postModalButton.innerText = "Post";
     postModalButton.onclick = postModalButtonClicked;
@@ -179,7 +180,7 @@ export default async function renderProfileFeed(){ //parametro para renderizar o
         const newPostButton = document.createElement("button")
         newPostButton.id = "new_post_button"
         newPostButton.type = "button"
-        newPostButton.innerText = 'New Post'
+        newPostButton.innerText = 'Novo post'
         
         newPostButton.addEventListener("click", newPostButtonClicked, false)
         newPostButton.token = token;

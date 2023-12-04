@@ -2,17 +2,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     const gender = sessionStorage.getItem('gender');
-    const jobTitle = sessionStorage.getItem('cargo');
+    const jobTitle = sessionStorage.getItem('jobTitle');
 
-    document.getElementById('usuario').value = sessionStorage.getItem('username');
+    document.getElementById('username').value = sessionStorage.getItem('username');
     document.getElementById('email').value = sessionStorage.getItem('email');
 
     if (gender) {
-        document.getElementById('genero').value = gender;
+        document.getElementById('gender').value = gender;
     }
 
     if (jobTitle) {
-        document.getElementById('cargo').value = jobTitle;
+        document.getElementById('jobTitle').value = jobTitle;
     }
 });
 
@@ -26,10 +26,10 @@ async function editarCadastro() {
     const userId = sessionStorage.getItem('userId')
     const token = sessionStorage.getItem('token')
 
-    const username = document.getElementById('usuario').value;
+    const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
-    const gender = document.getElementById('genero').value;
-    const jobTitle = document.getElementById('cargo').value;
+    const gender = document.getElementById('gender').value;
+    const jobTitle = document.getElementById('jobTitle').value;
     const profile_picture = ''
 
     const newInfo = {
@@ -57,13 +57,13 @@ async function editarCadastro() {
 
             sessionStorage.setItem('username', newInfo.username);
             sessionStorage.setItem('email', newInfo.email);
-            sessionStorage.setItem('genero', newInfo.gender);
-            sessionStorage.setItem('cargo', newInfo.jobTitle);
+            sessionStorage.setItem('gender', newInfo.gender);
+            sessionStorage.setItem('jobTitle', newInfo.jobTitle);
 
             window.location.href = "../tela de perfil/index.html";
         } else {
             console.error('Erro na edição', response.statusText);
-            // Exibir mensagem de erro na interface, se necessário
+
         }
     } catch (error) {
         console.error('Erro na edição', error);
