@@ -85,7 +85,7 @@ async function render_Posts_Comen(token) {
             const deleteButton = commentCard.querySelector(".delete_button");
             
             deleteButton.onclick = deleteCommentClicked;
-            deleteButton.comment = id;
+            deleteButton.commentId = id;
             deleteButton.token = token;
         }
         

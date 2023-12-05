@@ -45,8 +45,9 @@ comentsRouter.post('/comment', jwtGuard, async (req,res) => {
 comentsRouter.delete('/comment/:id', jwtGuard, async (req, res) =>{
     const commentId = +req.params.id;
     const user = req.user;
-    const postId = req.postId;
-    if((user.admin === false) && (user.id !== postsService.getOne(postId))) return res.status(401).json({message: 'Usuário não autorizado'});
+    const comment = await commentService.getOne(commentId);
+
+    if((user.admin === false) && (user.id !== comment.authorId)) return res.status(401).json({message: 'Usuário não autorizado'});
 
     try{
         const commentDeletado = await commentService.delete(commentId);
