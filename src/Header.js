@@ -18,9 +18,7 @@ export default function renderHeader (page) {
     header_content.classList.add("header_content")
 
     if(token) {
-        header_content.innerHTML = '<a href="../tela de perfil/index.html" class="header_profile"><img src="'
-        + profile_picture + '" alt="profile picture"> '
-        + username + '</a>'
+        header_content.innerHTML = '<a href="../tela de perfil/index.html" class="header_profile"><img src= " ' + profile_picture + '" alt= "profile picture"> '+ username + '</a>'
 
         const logout = document.createElement("button")
         logout.id = 'exit_button'
