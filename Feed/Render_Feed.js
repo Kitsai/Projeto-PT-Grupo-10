@@ -49,38 +49,42 @@ async function renderPosts(token) {
     
     console.log(posts);
     
-    posts.forEach( ({authorized, profilePicture, username, id, authorId, content, createdAt, updatedAt}) => {
-        const postCard = document.createElement("div")
-        
-        
-        // const botao = (authorized)? '<button class="delete_button"><img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar"></button>': ''
-        const linkDados = (!token) ? "../home/página de login.html" : "perfil"
-        const linkPost = "../Comentarios/index.html"
-        
+    for (let i = posts.length - 1; i >= 0; i--) {
+        const { authorized, profilePicture, username, id, authorId, content, createdAt, updatedAt } = posts[i];
+
+        const postCard = document.createElement("div");
+
+        const linkDados = (token) 
+        ? (username === sessionStorage.getItem('username') 
+            ? "../tela de perfil/index.html" 
+            : "../perfil")
+        : "../home/página de login.html";
+
+        const linkPost = "../Comentarios/index.html";
+
         const [year, month, day] = createdAt.split("T")[0].split("-");
-        
         const date = `${day}/${month}/${year}`;
-        
+
         postCard.classList.add("card");
         postCard.id = "post-" + id;
-        
-        postCard.innerHTML = '<div class="post_header"><a href="' 
-        + linkDados + '" class="dados"> <img src="data:image/png;base64,'
-        + profilePicture + '" alt="profile picture"> <h2>'
-        + username + '</h2>'
-        + date + '</a>' 
-        + '<div class="buttons_container"><button class="edit_button postModal-button" type="button"><img src="../assets/edit_icon.svg" alt="editar"></button>'
-        + '<button class="delete_button postModal-button" type="button"><img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar"></button></div>'
-        +'</div><a href="'
-        + linkPost + '" class="content">'
-        + md.render(content) + '</a>'
-        
-        if(authorized) {
+
+        postCard.innerHTML = '<div class="post_header"><a href="'
+            + linkDados + '" class="dados"> <img src = '
+            + profilePicture + ' alt="profile picture"> <h2 id = "nome">'
+            + username + '</h2>'
+            + date + '</a>'
+            + '<div class="buttons_container"><button class="edit_button postModal-button" type="button"><img src="../assets/edit_icon.svg" alt="editar"></button>'
+            + '<button class="delete_button postModal-button" type="button"><img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar"></button></div>'
+            + '</div><a href="'
+            + linkPost + '" class="content">'
+            + md.render(content) + '</a>';
+
+
+        if (authorized) {
             postCard.querySelector(".buttons_container").style.display = "block";
 
             // edit button
             const editButton = postCard.querySelector(".edit_button");
-
             editButton.onclick = editPostClicked;
             editButton.postId = id;
             editButton.postContent = content;
@@ -88,14 +92,17 @@ async function renderPosts(token) {
 
             // delete button
             const deleteButton = postCard.querySelector(".delete_button");
-            
             deleteButton.onclick = deletePostClicked;
             deleteButton.post = id;
             deleteButton.token = token;
         }
-        
-        postContainer.appendChild(postCard)
-    })
+
+        postContainer.appendChild(postCard);
+
+
+    
+
+    }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODAL
@@ -182,3 +189,5 @@ export default async function renderFeed(){
         
     }
 }
+
+

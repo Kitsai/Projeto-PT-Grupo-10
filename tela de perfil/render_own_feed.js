@@ -70,7 +70,7 @@ export async function renderPosts(token, userId) {  // adiciona como parametro o
         postCard.id = "post-" + id;
         
         postCard.innerHTML = '<div class="post_header"><a href="' 
-        + linkDados + '" class="dados"> <img src="data:image/png;base64,'
+        + linkDados + '" class="dados"> <img src="'
         + profile_picture + '" alt="profile picture"> <h2>'
         + username + '</h2>'
         + date + '</a>' 

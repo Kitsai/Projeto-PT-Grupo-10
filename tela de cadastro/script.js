@@ -7,7 +7,9 @@ async function criarCadastro() {
     const password = document.getElementById('password').value;
     const gender = document.getElementById('gender').value;
     const jobTitle = document.getElementById('jobTitle').value;
-    const profile_picture = ''
+    const profile_picture = document.getElementById('link_profile_picture').value;
+
+
 
     const novousername = {
         username,

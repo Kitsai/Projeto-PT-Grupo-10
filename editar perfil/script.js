@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const gender = sessionStorage.getItem('gender');
     const jobTitle = sessionStorage.getItem('jobTitle');
 
+    document.getElementById('link_profile_picture').value = sessionStorage.getItem('profile_picture')
     document.getElementById('username').value = sessionStorage.getItem('username');
     document.getElementById('email').value = sessionStorage.getItem('email');
 
@@ -30,7 +31,7 @@ async function editarCadastro() {
     const email = document.getElementById('email').value;
     const gender = document.getElementById('gender').value;
     const jobTitle = document.getElementById('jobTitle').value;
-    const profile_picture = ''
+    const profile_picture = document.getElementById('link_profile_picture').value;
 
     const newInfo = {
         username,
@@ -59,6 +60,7 @@ async function editarCadastro() {
             sessionStorage.setItem('email', newInfo.email);
             sessionStorage.setItem('gender', newInfo.gender);
             sessionStorage.setItem('jobTitle', newInfo.jobTitle);
+            sessionStorage.setItem('profile_picture', newInfo.profile_picture)
 
             window.location.href = "../tela de perfil/index.html";
         } else {

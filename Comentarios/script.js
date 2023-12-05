@@ -9,6 +9,13 @@ window.onclick = (event) => {
     }
 }
 
+var logo = document.getElementById('logo')
+
+logo.onclick = function(event) { 
+    window.location.href = "../Feed/index.html"
+}
+
+
 //event prevent default
 
 renderHeader("comen")

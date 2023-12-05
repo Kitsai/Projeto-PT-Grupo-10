@@ -3,7 +3,13 @@ import renderProfileFeed from './render_own_feed.js';
 import loadUserProfile from './render_own_feed.js';
 
 
+
 const modal = document.getElementById("modalPost");
+var logo = document.getElementById('logo')
+
+logo.onclick = function(event) { 
+    window.location.href = "../Feed/index.html"
+}
 
 window.onload = function() {
     const userId = sessionStorage.getItem('userId');
@@ -12,6 +18,8 @@ window.onload = function() {
     renderProfileFeed
     
 }
+
+
 
 window.onclick = (event) => {
     if (event.target == modal) {

@@ -44,6 +44,10 @@ header #logo {
 
 }
 
+header #logo:hover {
+    cursor: pointer;
+}
+
 
 .header_botao{
     position: fixed;
