@@ -1,4 +1,4 @@
-import renderComen from "../Comentários/Render_Comen.js";
+import renderComen from "../post/Render_Comen.js";
 
 export default function renderHeader (page) {
 

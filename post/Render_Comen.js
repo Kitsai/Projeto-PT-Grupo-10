@@ -37,9 +37,10 @@ async function render_Posts_Comen(token) {
     const commentContainer = document.querySelector(".comment")
     
     commentContainer.innerText = ""
-    
-    
-    const res = await fetch('http://localhost:3000/comment', {
+    const postId = window.location.href.split('id=')[1]
+    if (!postId) window.location.href = '/Feed'
+
+    const res = await fetch(`http://localhost:3000/posts/${postId}/comment`, {
         headers: (token)? {Authorization: 'Bearer ' + token} : {}
     });
     
@@ -49,7 +50,7 @@ async function render_Posts_Comen(token) {
     
     console.log(comments);
     
-    comments.forEach( ({id, post_id, user_id, content }) => {
+    comments.forEach( ({id, authorId,author, content }) => {
         const commentCard = document.createElement("div")
         
         
@@ -57,24 +58,21 @@ async function render_Posts_Comen(token) {
         const linkDados = (!token) ? "../home/página de login.html" : "perfil"
         const linkComment = (!token) ? "../home/página de login.html" : "comentarios"
         
-        const [year, month, day] = createdAt.split("T")[0].split("-");
-        
-        const date = `${day}/${month}/${year}`;
-        
         commentCard.classList.add("card");
-        commentCard.id = "post-" + id;
+        commentCard.id = "comment-" + id;
         
         commentCard.innerHTML = '<div class="post_header"><a href="' 
         + linkDados + '" class="dados"> <img src="data:image/png;base64,'
-        + profilePicture + '" alt="profile picture"> <h2>'
-        + username + '</h2>'
-        + date + '</a>' 
+        + author.profile_picture + '" alt="profile picture"> <h2>'
+        + author.username + '</h2>'
+        + '</a>' 
         + '<div class="buttons_container"><button class="edit_button postModal-button" type="button"><img src="../assets/edit_icon.svg" alt="editar"></button>'
         + '<button class="delete_button postModal-button" type="button"><img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar"></button></div>'
         +'</div>'
         + md.render(content) 
-        
-        if(authorized) {
+        const userId = sessionStorage.getItem('userId')
+
+        if(userId === authorId) {
             commentCard.querySelector(".buttons_container").style.display = "block";
 
             // edit button
@@ -122,13 +120,16 @@ const commentModalButtonClicked = async (event) => {
     console.log(JSON.stringify({content}));
     
     const modal = document.getElementById("modalComment");
-    
+    const authorId = sessionStorage.getItem('userId')
+
+    const postId = window.location.href.split('id=')[1]
+
     let res;
     if(mode) {
         res = await fetch('http://localhost:3000/comment', {
             method: 'POST',
             headers: { "Authorization": 'Bearer ' + token, 'Content-Type': 'application/json' },
-            body: JSON.stringify({content}),
+            body: JSON.stringify({authorId, postId, content}),
         })
     } else {
         const commentId = event.currentTarget.commentId;

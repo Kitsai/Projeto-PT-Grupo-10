@@ -13,7 +13,7 @@ const postsService = new PostsService();
 const userService = new UserService();
 const commentService = new ComentsService();
 
-comentsRouter.get('/posts/:postId/comments', jwtGuardNonBlocking, async (req, res) => {
+comentsRouter.get('/posts/:postId/comment', jwtGuardNonBlocking, async (req, res) => {
     const logado = req.logado;
     const postId = +req.params.postId;
     
