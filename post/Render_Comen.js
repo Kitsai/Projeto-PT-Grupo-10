@@ -4,16 +4,14 @@
 const md = window.markdownit();
 
 async function deleteCommentClicked(event) {
-    const commentId = event.currentTarget.comment;
+    const commentId = event.currentTarget.commentId;
     const token = event.currentTarget.token;
 
     console.log(commentId, token, 'http://localhost:3000/comment/' + commentId);
 
     const res = await fetch('http://localhost:3000/comment/' + commentId, {
         method: 'DELETE',
-        headers: {
-            Authorization: 'Bearer ' + token
-        }
+        headers: {Authorization: 'Bearer ' + token}
     });
     if(res.ok) document.getElementById("comment-" + commentId).remove();
 }

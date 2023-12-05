@@ -24,7 +24,7 @@ body{
     align-items: center;
 }
 
-.container #container_header #new_post_button {
+.container #container_header #new_comment_button {
     position: absolute;
     right: 5%;
     font-size: 1rem;
@@ -41,7 +41,7 @@ body{
     background-color: var(--cor-primaria21);
 }
 
-.container .posts {
+.container .comment {
     align-items: center;
     margin: 0 auto;
     gap: 2rem;
@@ -146,7 +146,7 @@ body{
     border-radius: var(--raio-borda);
 }
 
-.modal #modalPost-button {
+.modal #modalComment-button {
     width: fit-content;
     font-size: 1rem;
 }
