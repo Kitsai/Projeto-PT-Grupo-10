@@ -45,15 +45,8 @@ async function validarLogin() {
         if(response.ok) {
             const {token} = await response.json();
             console.log('login bem sucedido', token);
-            const pagina_anterior = localStorage.getItem("foca@pagina-anterior")
+            window.location.href = '../Feed/index.html';
             setData(token);
-            if(pagina_anterior){
-                window.location.href = pagina_anterior;
-
-            }else{
-                window.location.href = '../Feed/index.html';
-            }
-
 
         } else {
             mensagemErro.style.display = 'block';

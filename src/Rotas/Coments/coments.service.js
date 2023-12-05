@@ -19,27 +19,12 @@ class ComentsService {
         });
     }
 
-    async getOne(id){
-        return await prisma.comment.findUnique({
-            where:{
-                id
-            },
-            include:{
-                author:{
-                    select:{
-                        profile_picture:true,
-                        username:true
-                    }
-                }
-            }
-
-        })
-    }
-
-    async create(data) {
-        
+    async create(authorId, content) {
         return await prisma.comment.create({
-            data
+            data: {
+                authorId,
+                content
+            }
         })
     }
 
@@ -57,7 +42,6 @@ class ComentsService {
     }
 
     async update(id, content) {
-        console.log(content)
         return await prisma.comment.update({
             where: {
                 id
