@@ -25,7 +25,7 @@ export default function renderHeader (page) {
         const logout = document.createElement("button")
         logout.id = 'exit_button'
         logout.type = 'button'
-        logout.innerHTML = '<img src="../assets/exit-14.svg" alt="exit">'
+        logout.innerHTML = '<img src="../assets/log-out.svg" alt="exit">'
 
         logout.addEventListener("click", exit_button_clicked,false)
         logout.myParam = page
@@ -49,6 +49,7 @@ const exit_button_clicked = (evt) => {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('profile_picture');
+
 
     switch(page) {
         case "comen":
