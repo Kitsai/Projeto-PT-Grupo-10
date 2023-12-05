@@ -1,7 +1,7 @@
 import renderHeader from '../src/Header.js'
 import renderComen from './Render_Comen.js'
 
-const modal = document.getElementById("modalPost");
+const modal = document.getElementById("modalComent");
 
 window.onclick = (event) => {
     if (event.target == modal) {

@@ -1,70 +1,70 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// POSTS
+// COMMENTS
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const md = window.markdownit();
 
-async function deletePostClicked(event) {
-    const postId = event.currentTarget.post;
+async function deleteCommentClicked(event) {
+    const commentId = event.currentTarget.comment;
     const token = event.currentTarget.token;
 
-    console.log(postId, token, 'http://localhost:3000/post/' + postId);
+    console.log(commentId, token, 'http://localhost:3000/comment/' + commentId);
 
-    const res = await fetch('http://localhost:3000/posts/' + postId, {
+    const res = await fetch('http://localhost:3000/comment/' + commentId, {
         method: 'DELETE',
         headers: {
             Authorization: 'Bearer ' + token
         }
     });
-    if(res.ok) document.getElementById("post-" + postId).remove();
+    if(res.ok) document.getElementById("comment-" + commentId).remove();
 }
 
-function editPostClicked(event) {
-     const postContent = event.currentTarget.postContent;
+function editCommentClicked(event) {
+     const commentContent = event.currentTarget.commentContent;
     
-    const newPostModal = document.getElementById("modalPost");
-    const postModalButton = document.getElementById("modalPost-button");
+    const newCommentModal = document.getElementById("modalComment");
+    const commentModalButton = document.getElementById("modalComment-button");
     
-    newPostModal.style.display = "block";
-    postModalButton.innerText = "Update";
-    postModalButton.onclick = postModalButtonClicked;
-    postModalButton.postId = event.currentTarget.postId;
-    postModalButton.token = event.currentTarget.token;
-    postModalButton.mode = 0; // 1 = new post, 0 = edit post
-    simplemde.value(postContent);
+    newCommentModal.style.display = "block";
+    commentModalButton.innerText = "Update";
+    commentModalButton.onclick = commentModalButtonClicked;
+    commentModalButton.commentId = event.currentTarget.postId;
+    commentModalButton.token = event.currentTarget.token;
+    commentModalButton.mode = 0; // 1 = new comment, 0 = edit comment
+    simplemde.value(commentContent);
 }
 
-async function renderPosts(token) {
-    const postContainer = document.querySelector(".posts")
+async function render_Posts_Comen(token) {
+    const commentContainer = document.querySelector(".comment")
     
-    postContainer.innerText = ""
+    commentContainer.innerText = ""
     
     
-    const res = await fetch('http://localhost:3000/posts', {
+    const res = await fetch('http://localhost:3000/comment', {
         headers: (token)? {Authorization: 'Bearer ' + token} : {}
     });
     
     console.log(res);
     
-    const posts = await res.json();
+    const comments = await res.json();
     
-    console.log(posts);
+    console.log(comments);
     
-    posts.forEach( ({authorized, profilePicture, username, id, authorId, content, createdAt, updatedAt}) => {
-        const postCard = document.createElement("div")
+    comments.forEach( ({id, post_id, user_id, content }) => {
+        const commentCard = document.createElement("div")
         
         
         // const botao = (authorized)? '<button class="delete_button"><img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar"></button>': ''
         const linkDados = (!token) ? "../home/página de login.html" : "perfil"
-        const linkPost = (!token) ? "../home/página de login.html" : "comentarios"
+        const linkComment = (!token) ? "../home/página de login.html" : "comentarios"
         
         const [year, month, day] = createdAt.split("T")[0].split("-");
         
         const date = `${day}/${month}/${year}`;
         
-        postCard.classList.add("card");
-        postCard.id = "post-" + id;
+        commentCard.classList.add("card");
+        commentCard.id = "post-" + id;
         
-        postCard.innerHTML = '<div class="post_header"><a href="' 
+        commentCard.innerHTML = '<div class="post_header"><a href="' 
         + linkDados + '" class="dados"> <img src="data:image/png;base64,'
         + profilePicture + '" alt="profile picture"> <h2>'
         + username + '</h2>'
@@ -75,67 +75,67 @@ async function renderPosts(token) {
         + md.render(content) 
         
         if(authorized) {
-            postCard.querySelector(".buttons_container").style.display = "block";
+            commentCard.querySelector(".buttons_container").style.display = "block";
 
             // edit button
-            const editButton = postCard.querySelector(".edit_button");
+            const editButton = commentCard.querySelector(".edit_button");
 
-            editButton.onclick = editPostClicked;
-            editButton.postId = id;
-            editButton.postContent = content;
+            editButton.onclick = editCommentClicked;
+            editButton.commentId = id;
+            editButton.commentContent = content;
             editButton.token = token;
 
             // delete button
-            const deleteButton = postCard.querySelector(".delete_button");
+            const deleteButton = commentCard.querySelector(".delete_button");
             
-            deleteButton.onclick = deletePostClicked;
-            deleteButton.post = id;
+            deleteButton.onclick = deleteCommentClicked;
+            deleteButton.comment = id;
             deleteButton.token = token;
         }
         
-        postContainer.appendChild(postCard)
+        commentContainer.appendChild(commentCard)
     })
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MODAL
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export const simplemde = new SimpleMDE({ element: document.getElementById("modalPost-text"), spellChecker: false , hideIcons: ["image", "guide"]});
+export const simplemde = new SimpleMDE({ element: document.getElementById("modalComment-text"), spellChecker: false , hideIcons: ["image"]});
 
-const newPostButtonClicked = (event) => {
-    const newPostModal = document.getElementById("modalPost");
-    const postModalButton = document.getElementById("modalPost-button");
+const newCommentButtonClicked = (event) => {
+    const newCommentModal = document.getElementById("modalComment");
+    const commentModalButton = document.getElementById("modalComment-button");
     
-    newPostModal.style.display = "block";
-    postModalButton.innerText = "Post";
-    postModalButton.onclick = postModalButtonClicked;
-    postModalButton.token = event.currentTarget.token;
-    postModalButton.mode = 1; // 1 = new post, 0 = edit post
+    newCommentModal.style.display = "block";
+    commentModalButton.innerText = "Comment";
+    commentModalButton.onclick = commentModalButtonClicked;
+    commentModalButton.token = event.currentTarget.token;
+    commentModalButton.mode = 1; // 1 = new comment, 0 = edit comment
     simplemde.value("");
 }
 
-const postModalButtonClicked = async (event) => {
+const commentModalButtonClicked = async (event) => {
     const content = simplemde.value();
     const token = event.currentTarget.token;
     const mode = event.currentTarget.mode;
     
     console.log(JSON.stringify({content}));
     
-    const modal = document.getElementById("modalPost");
+    const modal = document.getElementById("modalComment");
     
     let res;
     if(mode) {
-        res = await fetch('http://localhost:3000/posts', {
+        res = await fetch('http://localhost:3000/comment', {
             method: 'POST',
             headers: { "Authorization": 'Bearer ' + token, 'Content-Type': 'application/json' },
             body: JSON.stringify({content}),
         })
     } else {
-        const postId = event.currentTarget.postId;
+        const commentId = event.currentTarget.commentId;
 
-        console.log(postId);
+        console.log(commentId);
 
-        await fetch('http://localhost:3000/posts/' + postId, {
+        await fetch('http://localhost:3000/comment/' + commentId, {
             method: 'PUT',
             headers: {"Authorization": 'Bearer ' + token, 'Content-Type': 'application/json'},
             body: JSON.stringify({content}),
@@ -149,7 +149,7 @@ const postModalButtonClicked = async (event) => {
     
     //destivar padrao de recarregar.
     //atualizar estado local.
-    renderPosts(token);
+    render_Posts_Comen(token);
     modal.style.display = "none";
 }
 
@@ -162,22 +162,22 @@ export default async function renderComen(){
 
     const token = sessionStorage.getItem('token');
     
-    await renderPosts(token)
+    await render_Posts_Comen(token)
     
-    if(document.getElementById("new_post_button") != null) {
-        document.getElementById("new_post_button").remove()
+    if(document.getElementById("new_comment_button") != null) {
+        document.getElementById("new_comment_button").remove()
     }
     
     if(token) {
-        const newPostButton = document.createElement("button")
-        newPostButton.id = "new_post_button"
-        newPostButton.type = "button"
-        newPostButton.innerText = 'Comentar'
+        const newCommentButton = document.createElement("button")
+        newCommentButton.id = "new_comment_button"
+        newCommentButton.type = "button"
+        newCommentButton.innerText = 'Comentar'
         
-        newPostButton.addEventListener("click", newPostButtonClicked, false)
-        newPostButton.token = token;
+        newCommentButton.addEventListener("click", newCommentButtonClicked, false)
+        newCommentButton.token = token;
         
-        document.getElementById("container_header").appendChild(newPostButton)
+        document.getElementById("container_header").appendChild(newCommentButton)
         
     }
 }
