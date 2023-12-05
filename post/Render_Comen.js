@@ -27,7 +27,7 @@ function editCommentClicked(event) {
     newCommentModal.style.display = "block";
     commentModalButton.innerText = "Update";
     commentModalButton.onclick = commentModalButtonClicked;
-    commentModalButton.commentId = event.currentTarget.postId;
+    commentModalButton.commentId = event.currentTarget.commentId;
     commentModalButton.token = event.currentTarget.token;
     commentModalButton.mode = 0; // 1 = new comment, 0 = edit comment
     simplemde.value(commentContent);
@@ -70,11 +70,11 @@ async function render_Posts_Comen(token) {
         + '<button class="delete_button postModal-button" type="button"><img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar"></button></div>'
         +'</div>'
         + md.render(content) 
-        const userId = sessionStorage.getItem('userId')
+        const userId = +sessionStorage.getItem('userId')
 
         if(userId === authorId) {
             commentCard.querySelector(".buttons_container").style.display = "block";
-
+            
             // edit button
             const editButton = commentCard.querySelector(".edit_button");
 
@@ -120,9 +120,9 @@ const commentModalButtonClicked = async (event) => {
     console.log(JSON.stringify({content}));
     
     const modal = document.getElementById("modalComment");
-    const authorId = sessionStorage.getItem('userId')
+    const authorId = +sessionStorage.getItem('userId')
 
-    const postId = window.location.href.split('id=')[1]
+    const postId = +window.location.href.split('id=')[1]
 
     let res;
     if(mode) {
@@ -132,14 +132,15 @@ const commentModalButtonClicked = async (event) => {
             body: JSON.stringify({authorId, postId, content}),
         })
     } else {
-        const commentId = event.currentTarget.commentId;
+        const commentId = event.target.commentId;
 
         console.log(commentId);
+        console.log(content)
 
         await fetch('http://localhost:3000/comment/' + commentId, {
             method: 'PUT',
             headers: {"Authorization": 'Bearer ' + token, 'Content-Type': 'application/json'},
-            body: JSON.stringify({content}),
+            body: JSON.stringify({content, authorId, postId}),
         });
     }
 

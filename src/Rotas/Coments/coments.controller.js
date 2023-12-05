@@ -33,6 +33,7 @@ comentsRouter.get('/comment/:id', jwtGuardNonBlocking, async (req, res) =>{
 comentsRouter.post('/comment', jwtGuard, async (req,res) => {
 
     const content = req.body;
+    console.log('body: ', content)
    try {
         const commentCriado = await commentService.create(content);
         res.status(201).json(commentCriado);
@@ -57,10 +58,10 @@ comentsRouter.delete('/comment/:id', jwtGuard, async (req, res) =>{
 
 comentsRouter.put('/comment/:id', jwtGuard, async (req,res) => {
     const user = req.user;
-    const content = req.body;
+    const { content } = req.body;
     const commentId = +req.params.id;
     const comment = await commentService.getOne(commentId);
-
+    console.log(content)
     if(user.id !== comment.authorId) return res.status(401).json({message: 'Usuário não autorizado'});
 
     try {

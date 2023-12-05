@@ -57,6 +57,7 @@ class ComentsService {
     }
 
     async update(id, content) {
+        console.log(content)
         return await prisma.comment.update({
             where: {
                 id
