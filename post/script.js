@@ -1,7 +1,7 @@
-import renderHeader from '../src/Header.js'
+import renderHeader_Comen from '../src/Header_Comen.js'
 import renderComen from './Render_Comen.js'
 
-const modal = document.getElementById("modalPost");
+const modal = document.getElementById("modalComent");
 
 window.onclick = (event) => {
     if (event.target == modal) {
@@ -11,7 +11,7 @@ window.onclick = (event) => {
 
 //event prevent default
 
-renderHeader("comen")
+renderHeader_Comen("comment")
 renderComen()
 
 
