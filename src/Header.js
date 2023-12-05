@@ -1,5 +1,5 @@
 import renderFeed from "../Feed/Render_Feed.js";
-import renderComen from "../Comentarios/Render_Comen.js"
+
 export default function renderHeader (page) {
 
     const token = sessionStorage.getItem('token');
@@ -34,7 +34,6 @@ export default function renderHeader (page) {
         + '<a id="header_entrar" href="../home/página de login.html">ENTRAR</a>'
         
         header_content.addEventListener('click', () => {
-            
             localStorage.setItem("foca@pagina-anterior", window.location.href);
         })
         
@@ -55,8 +54,6 @@ const exit_button_clicked = (evt) => {
         case "feed":
             renderFeed(null)
             break
-        case "comen":
-            renderComen(null)
         default:
             break
     }

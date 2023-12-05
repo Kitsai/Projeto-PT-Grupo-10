@@ -1,4 +1,4 @@
-export const mockedPosts = [
+export const mockedComments = [
     {
         id: 1,
         user: {img: "../assets/image login.png", name: "NOME"},
