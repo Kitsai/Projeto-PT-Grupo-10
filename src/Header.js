@@ -1,5 +1,5 @@
 import renderFeed from "../Feed/Render_Feed.js";
-import renderComen from "../Comentarios/Render_Comen.js"
+
 export default function renderHeader (page) {
 
     const token = sessionStorage.getItem('token');
@@ -18,7 +18,9 @@ export default function renderHeader (page) {
     header_content.classList.add("header_content")
 
     if(token) {
-        header_content.innerHTML = '<a href="../tela de perfil/index.html" class="header_profile"><img src= " ' + profile_picture + '" alt= "profile picture"> '+ username + '</a>'
+        header_content.innerHTML = '<a href="../tela de perfil/index.html" class="header_profile"><img src="'
+        + profile_picture + '" alt="profile picture"> '
+        + username + '</a>'
 
         const logout = document.createElement("button")
         logout.id = 'exit_button'
@@ -34,7 +36,6 @@ export default function renderHeader (page) {
         + '<a id="header_entrar" href="../home/página de login.html">ENTRAR</a>'
         
         header_content.addEventListener('click', () => {
-            
             localStorage.setItem("foca@pagina-anterior", window.location.href);
         })
         
@@ -55,8 +56,6 @@ const exit_button_clicked = (evt) => {
         case "feed":
             renderFeed(null)
             break
-        case "comen":
-            renderComen(null)
         default:
             break
     }

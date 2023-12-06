@@ -37,6 +37,15 @@ header{
 
 }
 
+.back_button {
+    width: auto;
+    height: 30px;
+    margin-left: 2%;
+}
+
+.back_button:hover{
+    cursor: pointer;
+}
 header #logo {
     scale: 10.5%;
     display: inline-block;
@@ -48,6 +57,11 @@ header #logo:hover {
     cursor: pointer;
 }
 
+header #logo{
+    position:absolute;
+    left: 23%;
+    
+}
 
 .header_botao{
     position: fixed;

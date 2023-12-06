@@ -48,9 +48,12 @@ export async function renderPosts(token, userId) {  // adiciona como parametro o
     console.log(res);
     
     const posts = await res.json();
-    
+
 
     if (posts)
+    
+    posts.reverse()
+
     posts.forEach( ({id, authorId, content, createdAt, updatedAt}) => {
 
         const username = sessionStorage.getItem('username')
@@ -59,8 +62,8 @@ export async function renderPosts(token, userId) {  // adiciona como parametro o
         
         
         // const botao = (authorized)? '<button class="delete_button"><img src="../assets/rubbish-bin-svgrepo-com.svg" alt="deletar"></button>': ''
-        const linkDados = (!token) ? "../home/página de login.html" : "perfil"
-        const linkPost = (!token) ? "../home/página de login.html" : "comentarios"
+        const linkDados = (!token) ? "../home/página de login.html" : "./index.html"
+        const linkPost = (!token) ? "../home/página de login.html" : `/post/index.html?id=${id}`
         
         const [year, month, day] = createdAt.split("T")[0].split("-");
         
@@ -106,7 +109,7 @@ export async function renderPosts(token, userId) {  // adiciona como parametro o
 // MODAL
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export const simplemde = new SimpleMDE({ element: document.getElementById("modalPost-text"), spellChecker: false , hideIcons: ["image"]});
+export const simplemde = new SimpleMDE({ element: document.getElementById("modalOwnPost-text"), spellChecker: false , hideIcons: ["image"]});
 
 const newPostButtonClicked = (event) => {
     const newPostModal = document.getElementById("modalPost");
@@ -189,3 +192,4 @@ export default async function renderProfileFeed(){ //parametro para renderizar o
         
     }
 }
+

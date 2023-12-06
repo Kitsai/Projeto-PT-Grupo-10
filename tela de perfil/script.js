@@ -7,6 +7,12 @@ import loadUserProfile from './render_own_feed.js';
 const modal = document.getElementById("modalPost");
 var logo = document.getElementById('logo')
 
+const back = document.getElementById('back_button')
+
+back.onclick = function (event) { 
+    window.location.href = "../Feed/index.html"
+}
+
 logo.onclick = function(event) { 
     window.location.href = "../Feed/index.html"
 }
@@ -19,8 +25,6 @@ window.onload = function() {
     
 }
 
-
-
 window.onclick = (event) => {
     if (event.target == modal) {
         modal.style.display = "none";
@@ -28,9 +32,15 @@ window.onclick = (event) => {
 }
 
 
-function redirecionar () {
-    window.location.href = "../Feed/index.html";
-}
+document.addEventListener('DOMContentLoaded', function () {
+
+    const fotoPerfil = document.querySelector('.foto')
+    const profilePicture = sessionStorage.getItem('profile_picture');
+    fotoPerfil.src = profilePicture;
+
+});
+
+
 //atualiza
 const fotoPerfil = document.getElementById('foto_perfil');
 const username = document.getElementById('username');

@@ -13,7 +13,7 @@ const postsService = new PostsService();
 const userService = new UserService();
 const commentService = new ComentsService();
 
-comentsRouter.get('/posts/:postId/comments', jwtGuardNonBlocking, async (req, res) => {
+comentsRouter.get('/posts/:postId/comment', jwtGuardNonBlocking, async (req, res) => {
     const logado = req.logado;
     const postId = +req.params.postId;
     
@@ -21,37 +21,21 @@ comentsRouter.get('/posts/:postId/comments', jwtGuardNonBlocking, async (req, re
     res.status(200).json(listaComments);
 })
 
-comentsRouter.get('/comment/:id', jwtGuardNonBlocking, async (req, res) => {
-    const user = req.user;
-    const postId = +req.params.postId;
+comentsRouter.get('/comment/:id', jwtGuardNonBlocking, async (req, res) =>{
     const commentId = +req.params.id;
 
-    const post = await postsService.getOne(postId);
-    const author = await userService.findbyId(post.authorId);
+    const comment = await commentService.getOne(commentId);
 
-
-    const newPost = {
-        authorized: (logado)? (user.id === post.authorId) || (user.admin === true) : false,
-        profilePicture: author.profile_picture,
-        name: author.username,
-        id: post.id,
-        authorId: post.authorId,
-        content: post.content,
-        createdAt: post.createdAt,
-        updatedAt: post.updatedAt,
-    };
-    if(post) res.status(200).json(newPost);
-    else res.status(404).json({message: 'Post não encontrado'});
+    res.status(200).json(comment);
 })
 
 
-comentsRouter.post('/posts/:postId/comment', jwtGuard, async (req,res) => {
+comentsRouter.post('/comment', jwtGuard, async (req,res) => {
 
-    const user = req.user;
-    const content = req.body.content;
-
-    try {
-        const commentCriado = await commentService.create(user.id, content);
+    const content = req.body;
+    console.log('body: ', content)
+   try {
+        const commentCriado = await commentService.create(content);
         res.status(201).json(commentCriado);
     } catch (e) {
         res.status(400).json({message: e.message});
@@ -59,10 +43,11 @@ comentsRouter.post('/posts/:postId/comment', jwtGuard, async (req,res) => {
 });
 
 comentsRouter.delete('/comment/:id', jwtGuard, async (req, res) =>{
-    const commentId = +req.params.commentId;
+    const commentId = +req.params.id;
     const user = req.user;
-    const postId = +req.params.postId;
-    if((user.admin === false) && (user.id !== postsService.getOne(postId))) return res.status(401).json({message: 'Usuário não autorizado'});
+    const comment = await commentService.getOne(commentId);
+
+    if((user.admin === false) && (user.id !== comment.authorId)) return res.status(401).json({message: 'Usuário não autorizado'});
 
     try{
         const commentDeletado = await commentService.delete(commentId);
@@ -74,14 +59,14 @@ comentsRouter.delete('/comment/:id', jwtGuard, async (req, res) =>{
 
 comentsRouter.put('/comment/:id', jwtGuard, async (req,res) => {
     const user = req.user;
-    const content = req.body.content;
-    const postId = +req.params.postId;
-    const post = await postsService.getOne(postId);
-
-    if(user.id !== post.authorId) return res.status(401).json({message: 'Usuário não autorizado'});
+    const { content } = req.body;
+    const commentId = +req.params.id;
+    const comment = await commentService.getOne(commentId);
+    console.log(content)
+    if(user.id !== comment.authorId) return res.status(401).json({message: 'Usuário não autorizado'});
 
     try {
-        const commentAtualizado = await commentServicee.update(postId, content);
+        const commentAtualizado = await commentService.update(commentId, content);
         res.status(200).json(commentAtualizado);
     } catch (e) {
         res.status(400).json({message: e.message});

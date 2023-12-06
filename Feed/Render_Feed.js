@@ -60,7 +60,7 @@ async function renderPosts(token) {
             : "../perfil")
         : "../home/página de login.html";
 
-        const linkPost = "../Comentarios/index.html";
+        const linkPost = `/post/index.html?id=${id}`
 
         const [year, month, day] = createdAt.split("T")[0].split("-");
         const date = `${day}/${month}/${year}`;
