@@ -1,0 +1,84 @@
+@import "../commom/styles/global.css";
+
+.caixa {
+    scale: 1;
+    width: 550px;
+    height: 90% ;
+    height: fit-content;
+    padding-left: 1.3rem ;
+    padding-right: 1.3rem;
+    padding-bottom: 0.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    align-self: center;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    border-radius: var(--raio-borda);
+    background: #FFFFFF;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%; 
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+    display: block;
+    margin-top: 0rem;
+    margin-bottom: 1.2rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
+}
+
+img:hover{
+    cursor: pointer;
+}
+
+.custom-select{
+    min-width: 200px;
+    border-color: var(--cor-primaria);
+}
+
+select{
+    font: 100 1rem "Sans Serif Collection Regular", sans-serif;
+    appearance: none;
+    width: 100%;
+    background-color: #eeeeee;
+    padding: 0.70rem;
+    border-radius: var(--raio-borda);
+    border: 1px solid #FFFFFF;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.caixa_input{
+    display: block;
+    height: fit-content;
+    width: 100%;
+    padding: 0.70rem;
+    box-sizing: border-box;
+    border-radius: var(--raio-borda);
+    border: 1px solid #FFFFFF;
+    outline: #FFFFFF;
+    background-color: #eeeeee;
+    transition: background 0.2s, border-color 0.3s;
+}
+
+.caixa_botao{
+    width: 100%;
+    line-height: 25px;
+    padding: 1rem 2rem;
+    vertical-align: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: white;
+    border-radius: var(--raio-borda);
+    outline: none;
+    cursor: pointer;
+    background-color: var(--cor-primaria);
+    transition: background 0.2s, border-color 0.3s;
+}
