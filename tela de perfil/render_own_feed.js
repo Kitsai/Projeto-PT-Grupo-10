@@ -51,6 +51,9 @@ export async function renderPosts(token, userId) {  // adiciona como parametro o
 
 
     if (posts)
+    
+    posts.reverse()
+
     posts.forEach( ({id, authorId, content, createdAt, updatedAt}) => {
 
         const username = sessionStorage.getItem('username')
@@ -106,7 +109,7 @@ export async function renderPosts(token, userId) {  // adiciona como parametro o
 // MODAL
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export const simplemde = new SimpleMDE({ element: document.getElementById("modalPost-text"), spellChecker: false , hideIcons: ["image"]});
+export const simplemde = new SimpleMDE({ element: document.getElementById("modalOwnPost-text"), spellChecker: false , hideIcons: ["image"]});
 
 const newPostButtonClicked = (event) => {
     const newPostModal = document.getElementById("modalPost");
@@ -189,3 +192,4 @@ export default async function renderProfileFeed(){ //parametro para renderizar o
         
     }
 }
+

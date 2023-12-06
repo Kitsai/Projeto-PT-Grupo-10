@@ -48,6 +48,8 @@ async function render_Posts_Comen(token) {
     
     console.log(comments);
     
+    comments.reverse()
+    
     comments.forEach( ({id, authorId,author, content }) => {
         const commentCard = document.createElement("div")
         
@@ -60,7 +62,7 @@ async function render_Posts_Comen(token) {
         commentCard.id = "comment-" + id;
         
         commentCard.innerHTML = '<div class="post_header"><a href="' 
-        + linkDados + '" class="dados"> <img src="data:image/png;base64,'
+        + linkDados + '" class="dados"> <img src="'
         + author.profile_picture + '" alt="profile picture"> <h2>'
         + author.username + '</h2>'
         + '</a>' 

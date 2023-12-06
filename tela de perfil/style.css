@@ -6,26 +6,18 @@ body{
 }
 
 .foto_perfil {
-    width: 100px;
-    height: 100px;
+    width: 300px;
+    height: 300px;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
-    margin: 0 auto; /* Centraliza horizontalmente */
+    margin: auto auto; 
 }
 
-.foto_perfil #foto {
-    display: block;
-    margin: 0 auto; /* Centraliza horizontalmente */
-    height: 100%;
-    width: 100%;
-    object-fit: cover; /* Mantém a proporção e corta a imagem para cobrir o contêiner */
-    border-radius: 50%; /* Certifica-se de que a imagem é circular */
-}
 
 .container_perfil {
     height: fit-content;
-    width: 1350px;
+    width: 80%px;
     position: absolute;
     border-bottom: 1cm;
     border-bottom-width: auto;
@@ -39,6 +31,26 @@ body{
     top: 10% ;
     
 }
+
+.container_perfil .perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os itens horizontalmente */
+    text-align: center; /* Centraliza o texto dentro da section */
+    padding: 1rem;
+    justify-content: center; /* Ajuste conforme necessário */
+    gap: 1rem; /* Ajuste conforme necessário */
+    margin-bottom: 1rem;
+}
+
+
+.container_perfil .perfil .profile_info button {
+    margin-top: 1rem; /* Adiciona algum espaçamento acima do botão (opcional) */
+    width: fit-content;
+    
+}
+
+
 
 
 .container_perfil #container_header {

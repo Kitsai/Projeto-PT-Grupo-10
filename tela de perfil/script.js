@@ -7,6 +7,12 @@ import loadUserProfile from './render_own_feed.js';
 const modal = document.getElementById("modalPost");
 var logo = document.getElementById('logo')
 
+const back = document.getElementById('back_button')
+
+back.onclick = function (event) { 
+    window.location.href = "../Feed/index.html"
+}
+
 logo.onclick = function(event) { 
     window.location.href = "../Feed/index.html"
 }

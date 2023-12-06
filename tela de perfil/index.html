@@ -12,6 +12,7 @@
 </head>
 <body>
     <header >
+            <img id="back_button" class = "back_button" src="../assets/back arrow.svg" alt="botão voltar">
             <img id="logo" src="../assets/propaganda.png" alt="logo">
     </header>
     <main>
@@ -26,12 +27,13 @@
                 <div class = "foto_perfil">
                     <img class = "foto" src="" alt="Foto de perfil"> 
                 </div>
-                
-                <strong>Nome de usuário: </strong><span class="perfil_texto" id="username"></span><br>
-                <strong>Cargo empresarial: </strong><span class="perfil_texto" id="jobTitle">jobTitle: </span><br>
-                <strong>Email: </strong><span class="perfil_texto" id="email">Email: </span><br>
-                <strong>Gênero: </strong><span class="perfil_texto" id="gender">Gênero: </span><br>
+                <section class = 'profile_info'>
+                <strong>Nome de usuário: </strong><span id="username"></span><br>
+                <strong>Cargo empresarial: </strong><span id="jobTitle">jobTitle: </span><br>
+                <strong>Email: </strong><span id="email">Email: </span><br>
+                <strong>Gênero: </strong><span id="gender">Gênero: </span><br>
                 <button class="caixa_botao" onclick="location.href = '../editar perfil/editar_perfil.html'">Editar Perfil</button>
+                </section>
             </section>
 
             <div class="container_header">
@@ -47,7 +49,7 @@
         <div id="modalPost" class="modal caixa">
             
             <div id="modalPost-content" class="modal-content">
-                <div id="modalPost-markdown" class="markdown"><textarea id="modalPost-text"></textarea></div>
+                <div id="modalPost-markdown" class="markdown"><textarea id="modalOwnPost-text"></textarea></div>
                 <button id="modalPost-button" class="caixa_botao"></button>
             </div>
         </div>
