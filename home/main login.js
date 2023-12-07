@@ -14,9 +14,6 @@ async function setData(token) {
         sessionStorage.setItem('jobTitle', user.jobTitle)
         sessionStorage.setItem('gender', user.gender)
         sessionStorage.setItem('email', user.email)
-        
-
-        console.log(username, profile_picture, jobTitle)
 
     } else {
         console.error('Erro ao pegar dados do username', res.status, res.statusText);
@@ -46,7 +43,7 @@ async function validarLogin() {
             const {token} = await response.json();
             console.log('login bem sucedido', token);
             const pagina_anterior = localStorage.getItem("foca@pagina-anterior")
-            setData(token);
+            await setData(token);
             if(pagina_anterior){
                 window.location.href = pagina_anterior;
 
