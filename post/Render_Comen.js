@@ -105,7 +105,7 @@ const newCommentButtonClicked = (event) => {
     const commentModalButton = document.getElementById("modalComment-button");
     
     newCommentModal.style.display = "block";
-    commentModalButton.innerText = "Comment";
+    commentModalButton.innerText = "Comentar";
     commentModalButton.onclick = commentModalButtonClicked;
     commentModalButton.token = event.currentTarget.token;
     commentModalButton.mode = 1; // 1 = new comment, 0 = edit comment

@@ -47,8 +47,10 @@ const exit_button_clicked = (evt) => {
     const page = evt.currentTarget.myParam
     
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('userId')
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('profile_picture');
+    window.location.href = "../Feed/index.html"
 
 
     switch(page) {
